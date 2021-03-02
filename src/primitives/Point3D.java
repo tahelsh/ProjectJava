@@ -1,4 +1,4 @@
-package primitives;
+package primitives;//klkl
 /**
  *Point3D is class for point in 3D 
  * @author Tahel and Ayala
@@ -6,7 +6,7 @@ package primitives;
  */
 public class Point3D {
 	
-	Coordinate x;//x
+	Coordinate x;//x 
 	Coordinate y;//y
 	Coordinate z;//z
 	public static Point3D ZERO=new Point3D(0,0,0);//zero static
