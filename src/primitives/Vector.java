@@ -1,4 +1,4 @@
-package primitives;//jjjjjjjjjj
+package primitives;//jjjj
 
 public class Vector {
 	
