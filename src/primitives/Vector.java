@@ -1,4 +1,4 @@
-package primitives;
+package primitives;//
 
 public class Vector {
 	
@@ -121,6 +121,10 @@ public class Vector {
 	@Override
 	public String toString() {
 		return head.toString();
+	}
+	public void print()
+	{
+		return;
 	}
 
 	
