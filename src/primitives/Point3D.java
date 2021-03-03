@@ -1,4 +1,6 @@
-package primitives;//klkl
+package primitives;
+import java.util.Objects;
+
 /**
  *Point3D is class for point in 3D 
  * @author Tahel and Ayala
@@ -43,9 +45,9 @@ public class Point3D {
  */
 public Vector subtract(Point3D otherPoint) throws IllegalArgumentException
 {
-	double newX=otherPoint.x.coord -x.coord;
-	double newY=otherPoint.x.coord -y.coord;
-	double newZ=otherPoint.x.coord -z.coord;
+	double newX=x.coord - otherPoint.x.coord ;
+	double newY=y.coord - otherPoint.y.coord ;
+	double newZ=z.coord - otherPoint.z.coord ;
 	return new Vector(newX, newY, newZ);
 }
 
@@ -94,11 +96,16 @@ public boolean equals(Object obj)
      Point3D other=(Point3D)obj;
      return x.equals(other.x)&&y.equals(other.y)&&z.equals(other.z);     
 }
+@Override
+public int hashCode() {
+	return Objects.hash(x, y, z);
+}
 
 @Override
 public String toString() {
-	return "("+x+","+y+","+z+")";
-}
+	return "Point3D [" + (x != null ? "x=" + x + ", " : "") + (y != null ? "y=" + y + ", " : "")
+			+ (z != null ? "z=" + z : "") + "]";}
 
 
 }
+

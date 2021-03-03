@@ -1,14 +1,17 @@
-package primitives;//jjjj
+package primitives;
+import java.util.Objects;
+
 
 public class Vector {
 	
-	private Point3D head;
+	 Point3D head;
 	
 /**
  * c-tor from Point3D
  * @param head Point3D
  */
-	public Vector(Point3D head) {
+	public Vector(Point3D head) 
+	{
 		super();
 		this.head = head;
 	}
@@ -35,7 +38,7 @@ public class Vector {
  */
 	public Vector(double x, double y, double z) throws IllegalArgumentException {
 		super();
-		Point3D point=new Point3D(new Coordinate(x),new Coordinate(y),new Coordinate(z));
+		Point3D point=new Point3D(x,y,z);
 		if(point.equals(Point3D.ZERO))
 			throw new IllegalArgumentException("Error, cannot create vector zero");
 		this.head = point;
@@ -45,7 +48,8 @@ public class Vector {
 	 * get
 	 * @return the head point
 	 */
-	public Point3D getHead() {
+	public Point3D getHead() 
+	{
 		return head;
 	}
 /**
@@ -66,7 +70,7 @@ public class Vector {
  */
 	public Vector subtract(Vector otherVector) throws IllegalArgumentException
 	{
-		return head.subtract(otherVector.getHead());
+		return head.subtract(otherVector.head);
 	}
 /**
  *  scale product
@@ -119,14 +123,24 @@ public class Vector {
 		return new Vector(head.x.coord/length, head.y.coord/length, head.z.coord/length);
 	}
 	@Override
-	public String toString() {
-		return head.toString();
+    public String toString() {
+		return "Vector [" + (head != null ? "head=" + head : "") + "]";	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(head);
 	}
-	public void print()
-	{
-		return;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		
+		if (obj == null) return false;
+		
+		if (!(obj instanceof Vector)) {
+			return false;
+		}
+		Vector other = (Vector) obj;
+		return head.equals(other.head);
 	}
-
-	
-
 }

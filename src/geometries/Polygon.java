@@ -41,7 +41,7 @@ public class Polygon implements Geometry {
 	 *                                  <li>The polygon is concave (not convex)</li>
 	 *                                  </ul>
 	 */
-	public Polygon(Point3D... vertices) {
+	public Polygon(Point3D... vertices) throws IllegalArgumentException{
 		if (vertices.length < 3)
 			throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
 		this.vertices = List.of(vertices);
@@ -82,7 +82,7 @@ public class Polygon implements Geometry {
 	}
 
 	@Override
-	public Vector getNormal(Point3D point) {
+	public Vector get_Normal(Point3D point) {
 		return plane.getNormal();
 	}
 }

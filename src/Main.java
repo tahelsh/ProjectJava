@@ -14,7 +14,7 @@ public final class Main {
      * 
      * @param args irrelevant here
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalArgumentException {
 
         try { // test zero vector
             new Vector(0, 0, 0);
@@ -65,7 +65,8 @@ public final class Main {
         if (!Point3D.ZERO.equals(p1.add(new Vector(-1, -2, -3))))
             out.println("ERROR: Point + Vector does not work correctly");
         if (!new Vector(1, 1, 1).equals(new Point3D(2, 3, 4).subtract(p1)))
-             out.println("ERROR: Point - Point does not work correctly");
+            out.println("ERROR: Point - Point does not work correctly");
+     
 
         out.println("If there were no any other outputs - all tests succeeded!");
     }
