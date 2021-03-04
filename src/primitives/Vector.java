@@ -1,9 +1,16 @@
 package primitives;
 import java.util.Objects;
 
+/**
+ * class of Vector
+ * @author Tahel Sharon & Ayala Israeli
+ *
+ */
 
 public class Vector {
-	
+	/**
+	 * head Point
+	 */
 	 Point3D head;
 	
 /**
@@ -103,20 +110,38 @@ public class Vector {
 				otherVec.head.x.coord*head.z.coord - head.x.coord*otherVec.head.z.coord,
 				head.x.coord*otherVec.head.y.coord - head.y.coord*otherVec.head.x.coord);
 	}
+	
+	/**
+	 * calculate length squared
+	 * @return length squared
+	 */
 	public double lengthSquared()
 	{
 		return this.dotProduct(this);
 	}
+	/**
+	 * calculate the length of the vector
+	 * @return length of the vector
+	 */
 	public double length()
 	{
 		return Math.sqrt(this.lengthSquared());
 	}
+	
+	/**
+	 * normalize the vector
+	 * @return this vector but normalize
+	 */
 	public Vector normalize()
 	{
 		double length=this.length();
 		head=new Point3D(head.x.coord/length, head.y.coord/length, head.z.coord/length);
 		return this;
 	}
+	/**
+	 * normalized
+	 * @return copy of this vector but normelized
+	 */
 	public Vector normalized() throws IllegalArgumentException
 	{
 		double length=this.length();
