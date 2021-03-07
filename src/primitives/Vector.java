@@ -104,11 +104,14 @@ public class Vector {
  * @return new vector after cross product
  * @throws IllegalArgumentException
  */
+	
 	public Vector crossProduct(Vector otherVec) throws IllegalArgumentException
 	{
+		if(otherVec.head.x.coord/head.x.coord==otherVec.head.y.coord/head.y.coord && otherVec.head.y.coord/head.y.coord==otherVec.head.z.coord/head.z.coord)
+			throw new IllegalArgumentException("Parallel vectors cannot be cross producted");
 		return new Vector(head.y.coord*otherVec.head.z.coord - head.z.coord*otherVec.head.y.coord,
 				otherVec.head.x.coord*head.z.coord - head.x.coord*otherVec.head.z.coord,
-				head.x.coord*otherVec.head.y.coord - head.y.coord*otherVec.head.x.coord);
+		     	head.x.coord*otherVec.head.y.coord - head.y.coord*otherVec.head.x.coord);
 	}
 	
 	/**
@@ -144,8 +147,6 @@ public class Vector {
 	 */
 	public Vector normalized() throws IllegalArgumentException
 	{
-		//double length=this.length();
-		//return new Vector(head.x.coord/length, head.y.coord/length, head.z.coord/length);
 	    Vector v=new Vector(head);
 	    return v.normalize();
 	}
