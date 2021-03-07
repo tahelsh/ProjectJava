@@ -1,7 +1,10 @@
 import primitives.*;
 import static java.lang.System.out;
 import static primitives.Util.*;
-
+/**
+ * Tahel Sharon 323125153 tahelsharon01@gmail.com
+ * Ayala Israeli 324207232 israeliayala95@gmail.com
+ */
 /**
  * Test program for the 1st stage
  *

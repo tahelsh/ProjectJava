@@ -144,8 +144,10 @@ public class Vector {
 	 */
 	public Vector normalized() throws IllegalArgumentException
 	{
-		double length=this.length();
-		return new Vector(head.x.coord/length, head.y.coord/length, head.z.coord/length);
+		//double length=this.length();
+		//return new Vector(head.x.coord/length, head.y.coord/length, head.z.coord/length);
+	    Vector v=new Vector(head);
+	    return v.normalize();
 	}
 	@Override
     public String toString() {
