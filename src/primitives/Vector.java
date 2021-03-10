@@ -17,9 +17,11 @@ public class Vector {
  * c-tor from Point3D
  * @param head Point3D
  */
-	public Vector(Point3D head) 
+	public Vector(Point3D head) throws IllegalArgumentException
 	{
-		super();
+		//super();
+		if(head.equals(Point3D.ZERO))
+			throw new IllegalArgumentException("Error, cannot create vector zero");
 		this.head = head;
 	}
 /**

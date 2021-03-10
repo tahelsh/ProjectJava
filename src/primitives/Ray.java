@@ -39,7 +39,7 @@ public class Ray {
  * 
  * @return p0
  */
-	public Point3D getpO() {
+	public Point3D getp0() {
 		return p0;
 	}
 

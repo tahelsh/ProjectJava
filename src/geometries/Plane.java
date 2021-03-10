@@ -1,6 +1,7 @@
 package geometries;
-import primitives.Point3D;
-import primitives.Vector;
+//import primitives.Point3D;
+//import primitives.Vector;
+import  primitives.*;
 /**
  * class of Plane, implements from Geometry interface
  * @author Tahel Sharon & Ayala Israeli
@@ -33,10 +34,17 @@ public class Plane implements Geometry {
 	 * @param q1
 	 * @param q2
 	 */
-	public Plane(Point3D q0,Point3D q1,Point3D q2 ) {
-		super();
-		this.q0 = q0;
-		this.normal = null;
+	public Plane(Point3D p1,Point3D p2,Point3D p3) {
+		try {
+			this.q0=p1;
+			Vector v1=p1.subtract(p2);
+			Vector v2=p1.subtract(p3);		
+			normal=v1.crossProduct(v2).normalized();
+			}
+	        catch (IllegalArgumentException exc)
+			{
+	        throw new IllegalArgumentException("This is not a Plane/Triangle");
+			}
 	}
 	
 	/**
@@ -57,7 +65,7 @@ public class Plane implements Geometry {
 	
 	@Override 
 	public Vector get_Normal(Point3D point) {
-		return null;
+		return normal;
 	}
 	
 	@Override
