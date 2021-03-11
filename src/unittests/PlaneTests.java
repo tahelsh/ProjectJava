@@ -37,6 +37,7 @@ public class PlaneTests {
 		assertTrue("ERROR: Bad normal to plane", isZero(v2.dotProduct(n)));
 		assertTrue("ERROR: Bad normal to plane", isZero(v3.dotProduct(n)));
 		// =============== Boundary Values Tests ==================
+		//if there are 2 vectors that are parallel
 		try {
 	         new Plane(new Point3D(1,2,3),new Point3D(2,4,6),new Point3D(4,8,12)).get_Normal(p1);
 	         fail("GetNormal() should throw an exception, but it failed");

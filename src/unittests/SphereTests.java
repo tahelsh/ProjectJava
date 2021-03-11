@@ -28,12 +28,6 @@ public class SphereTests {
 		Sphere s=new Sphere(o,6);
 		Vector v= p.subtract(o).normalize();
 		assertEquals("Bad normal to sphere",v,s.get_Normal(p));
-		// =============== Boundary Values Tests ==================
-        // 
-        //try {
-       // 	new Sphere(o,0).get_Normal(p);
-       //     fail("GetNormal() should throw an exception, but it failed");
-       // } catch (Exception e) {}
 	}
 
 }

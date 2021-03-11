@@ -1,4 +1,4 @@
-package geometries;//
+package geometries;
 
 import java.util.List;
 import primitives.*;

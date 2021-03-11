@@ -51,7 +51,7 @@ public class Tube implements Geometry {
 	
 	@Override
 	public Vector get_Normal(Point3D point) {
-		Point3D o=axisRay.getp0();
+		Point3D o=axisRay.getP0();
 	    Vector v=axisRay.getDir();
 	    double t=point.subtract(o).dotProduct(v);
 	    if(!isZero(t))
@@ -60,6 +60,6 @@ public class Tube implements Geometry {
 	       return point.subtract(o).normalize();
 	    }
 	  //if the point is on the same level then return normal
-        return point.subtract(axisRay.getp0()).normalized();
+        return point.subtract(axisRay.getP0()).normalize();
 	}
 }

@@ -20,7 +20,7 @@ import primitives.Vector;
  * @author Tahel Sharon 323125153 and Ayala Israeli 324207232
  *
  */
-public class TubeTexts {
+public class TubeTests {
 
 	/**
 	 * Test method for {@link geometries.Tube#get_Normal(primitives.Point3D)}.
@@ -32,12 +32,7 @@ public class TubeTexts {
 		Point3D p = new Point3D(1,0,1);
 		Vector n= t.get_Normal(p);
 		assertTrue("bad normal to tube",isZero(r.getDir().dotProduct(n)));
-		// =============== Boundary Values Tests ==================
-        // 
-       // try {
-       // 	new Tube(r,0).get_Normal(p);
-       //     fail("GetNormal() should throw an exception, but it failed");
-       // } catch (Exception e) {}
 	}
 
 }
+

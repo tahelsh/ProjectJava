@@ -137,8 +137,8 @@ public class VectorTests {
 	@Test
 	public void testLength() {
 		// ============ Equivalence Partitions Tests ==============
-		Vector v1 = new Vector(1, 2, 3);
-		assertTrue("Wrong length squared caculate", isZero(v1.length()-Math.sqrt(14)));
+		Vector v1 = new Vector(0, 3, 4);
+		assertTrue("Wrong length squared caculate", isZero(v1.length()-5));
 	}
 
 	/**

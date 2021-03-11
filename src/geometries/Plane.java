@@ -26,7 +26,7 @@ public class Plane implements Geometry {
 	public Plane(Point3D q0, Vector normal) {
 		super();
 		this.q0 = q0;
-		this.normal = normal;
+		this.normal = normal.normalize();
 	}
 	/**
 	 * constructor that gets 3 points3D, the first is the q0 and constuct the normal from the others points
