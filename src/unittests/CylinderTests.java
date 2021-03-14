@@ -13,7 +13,7 @@ public class CylinderTests {
 	@Test
 	public void testGetNormal() {
 		Cylinder cyl=new Cylinder(new Ray(Point3D.ZERO, new Vector(0,0,1)),5,3);
-		// ============ Equivalence Partitions Tests ==============
+		// ============ Equivalence Partitions Tests =============
 		//TC01: test for points on the cylinder's side
 		assertEquals("Bad normal to cylinder-for points to the cylinder's side", new Vector(1,0,0),cyl.getNormal(new Point3D(5,0,2.5)));
 		//TC02: test for points on the FIRST base(where the point P0)
