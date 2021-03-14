@@ -50,7 +50,7 @@ public class Tube implements Geometry {
 	}
 	
 	@Override
-	public Vector get_Normal(Point3D point) {
+	public Vector getNormal(Point3D point) {
 		Point3D o=axisRay.getP0();
 	    Vector v=axisRay.getDir();
 	    double t=point.subtract(o).dotProduct(v);

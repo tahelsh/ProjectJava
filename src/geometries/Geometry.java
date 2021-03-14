@@ -15,5 +15,5 @@ public interface Geometry {
 	 * @param p
 	 * @return Vector normal for point
 	 */
-	public Vector get_Normal(Point3D p);
+	public Vector getNormal(Point3D p);
 }

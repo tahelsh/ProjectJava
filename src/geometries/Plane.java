@@ -37,9 +37,9 @@ public class Plane implements Geometry {
 	public Plane(Point3D p1,Point3D p2,Point3D p3) {
 		try {
 			this.q0=p1;
-			Vector v1=p1.subtract(p2);
-			Vector v2=p1.subtract(p3);		
-			normal=v1.crossProduct(v2).normalized();
+			Vector v1=p1.subtract(p2);//ווקטור 1
+			Vector v2=p1.subtract(p3);//ווקטור 2	
+			normal=v1.crossProduct(v2).normalized();//הנורמל את נותן ווקטורים 2 בין ווקטורית מכפלה
 			}
 	        catch (IllegalArgumentException exc)
 			{
@@ -64,7 +64,7 @@ public class Plane implements Geometry {
 	}
 	
 	@Override 
-	public Vector get_Normal(Point3D point) {
+	public Vector getNormal(Point3D point) {
 		return normal;
 	}
 	
