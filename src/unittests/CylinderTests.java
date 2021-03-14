@@ -18,10 +18,10 @@ public class CylinderTests {
 		assertEquals("Bad normal to cylinder-for points to the cylinder's side", new Vector(1,0,0),cyl.getNormal(new Point3D(5,0,2.5)));
 		//TC02: test for points on the FIRST base(where the point P0)
 		assertEquals("Bad normal to cylinder-for points to the cylinder's first base", new Vector(0,0,-1),cyl.getNormal(new Point3D(1,2,0)));
-		//assertEquals("Bad normal to cylinder-for points to the cylinder's first base", new Vector(0,0,-1),cyl.getNormal(Point3D.ZERO));
+		assertEquals("Bad normal to cylinder-for points to the cylinder's first base", new Vector(0,0,-1),cyl.getNormal(Point3D.ZERO));
 		//TC03: test for points on the SECOND base
 		assertEquals("Bad normal to cylinder-for points to the cylinder's second base", new Vector(0,0,1),cyl.getNormal(new Point3D(1,2,3)));
-		//assertEquals("Bad normal to cylinder-for points to the cylinder's second base", new Vector(0,0,1),cyl.getNormal(new Point3D(0,0,3)));
+		assertEquals("Bad normal to cylinder-for points to the cylinder's second base", new Vector(0,0,1),cyl.getNormal(new Point3D(0,0,3)));
 		// =============== Boundary Values Tests ==================
 		//TC02: test for points on the border between the cylinde's side and the first base
 		assertEquals("Bad normal to cylinder-for points to the cylinder's first base", new Vector(0,1,0),cyl.getNormal(new Point3D(0,5,0)));

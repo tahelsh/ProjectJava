@@ -41,6 +41,11 @@ public class Cylinder extends Tube {
 	
 	@Override
 	public Vector getNormal(Point3D point) {
+		if(point.equals(axisRay.getP0()))//התחתון הבסיס מרכז זה שקיבלנו הנקודה אם
+			return axisRay.getDir().scale(-1).normalize();
+		Point3D centerSecondBase=axisRay.getP0().add(axisRay.getDir().scale(height));
+		if(point.equals(centerSecondBase))//העליון הבסיס מרכז זה שקיבלנו הנקודה אם
+			return axisRay.getDir().normalize();
 		if(point.subtract(axisRay.getP0()).length()<radius && isZero(point.subtract(axisRay.getP0()).dotProduct(axisRay.getDir())))//בסיס תחתון
 			return axisRay.getDir().scale(-1).normalize();
 		Vector v=point.subtract(axisRay.getP0().add(axisRay.getDir().scale(height)));//העליון הבסיס מרכז לבין שקיבלנו הנקודה בין ווקטור
