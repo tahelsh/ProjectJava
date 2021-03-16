@@ -8,7 +8,7 @@ import primitives.Point3D;
  *
  */
 
-public interface Geometry {
+public interface Geometry extends Intersectable {
 
 	/**
 	 * return vector normal of the geometry

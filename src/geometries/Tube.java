@@ -1,6 +1,9 @@
 package geometries;
 import primitives.Point3D;
 import static primitives.Util.*;
+
+import java.util.List;
+
 import primitives.Ray;
 import primitives.Vector; 
 
@@ -13,11 +16,11 @@ public class Tube implements Geometry {
 	/**
 	 * the ray
 	 */
-	Ray axisRay;
+	protected Ray axisRay;
 	/**
 	 * radius value
 	 */
-	double radius;
+	protected double radius;
 	
 	/**
 	 * constructor from ray and radius value
@@ -61,5 +64,10 @@ public class Tube implements Geometry {
 	    }
 	  //if the point is on the same level then return normal
         return point.subtract(axisRay.getP0()).normalize();
+	}
+	@Override
+	public List<Point3D> findIntersections(Ray r) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

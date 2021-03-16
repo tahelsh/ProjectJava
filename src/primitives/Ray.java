@@ -3,8 +3,8 @@ import java.util.Objects;
 
 public class Ray {
 
-	Point3D p0;
-	Vector dir;
+	private Point3D p0;
+	private	Vector dir;
 	
 	public Ray(Point3D p0, Vector dir) throws IllegalArgumentException {
 		super();
@@ -51,6 +51,13 @@ public class Ray {
 		return dir;
 	}
 
-
+	/**
+	 * 
+	 * @param t - scalar
+	 * @return p0 +t*v
+	 */
+	public Point3D getPoint(double t) {
+		return p0.add(dir.scale(t));
+	}
 
 }

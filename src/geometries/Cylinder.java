@@ -13,7 +13,7 @@ public class Cylinder extends Tube {
 	/**
 	 * height value
 	 */
-	double height;
+	private double height;
 
 	/**
 	 * constructor of cylinder, gets ray, radius and heighth

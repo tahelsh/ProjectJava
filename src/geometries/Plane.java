@@ -1,4 +1,6 @@
 package geometries;
+import java.util.List;
+
 //import primitives.Point3D;
 //import primitives.Vector;
 import  primitives.*;
@@ -12,11 +14,11 @@ public class Plane implements Geometry {
 	/**
 	 * point p0
 	 */
-	Point3D q0;
+	protected Point3D q0;
 	/**
 	 * vector normal
 	 */
-	Vector normal;
+	protected Vector normal;
 
 	/**
 	 * constructor that get point3D and vector normal
@@ -71,6 +73,12 @@ public class Plane implements Geometry {
 	@Override
 	public String toString() {
 		return "Plane [" + (q0 != null ? "q0=" + q0 + ", " : "") + (normal != null ? "normal=" + normal : "") + "]";
+	}
+	
+	@Override
+	public List<Point3D> findIntersections(Ray r) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,11 +1,14 @@
 package geometries;
+import java.util.List;
+
 import primitives.Point3D;
+import primitives.Ray;
 import primitives.Vector;
 
 public class Sphere implements Geometry {
 
-		Point3D center;
-		double radius;
+	private	Point3D center;
+	private	double radius;
 		
 	public Sphere(Point3D center, double radius) {
 		super();
@@ -29,6 +32,11 @@ public class Sphere implements Geometry {
 		public Vector getNormal(Point3D point) {
 			Vector v=point.subtract(center).normalize();
 			return v;
+		}
+		@Override
+		public List<Point3D> findIntersections(Ray r) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 	}
 

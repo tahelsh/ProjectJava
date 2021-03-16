@@ -11,7 +11,7 @@ public class Vector {
 	/**
 	 * head Point
 	 */
-	 Point3D head;
+	private Point3D head;
 	
 /**
  * c-tor from Point3D
