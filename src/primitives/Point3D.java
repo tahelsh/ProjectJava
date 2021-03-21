@@ -105,7 +105,14 @@ public int hashCode() {
 public String toString() {
 	return "Point3D [" + (x != null ? "x=" + x + ", " : "") + (y != null ? "y=" + y + ", " : "")
 			+ (z != null ? "z=" + z : "") + "]";}
-
+/**
+ * 
+ * @return x double
+ */
+public double getX()
+{
+	return x.coord;
+}
 
 }
 

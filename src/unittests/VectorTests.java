@@ -16,6 +16,7 @@ import org.junit.Test;
 public class VectorTests {
 
 	/**
+	 * checks add function
 	 * Test method for {@link primitives.Vector#add(primitives.Vector)}.
 	 */
 	@Test
@@ -37,8 +38,9 @@ public class VectorTests {
 		     assertTrue(e.getMessage()!= null);
 		 }	
 	}
-
+ 
 	/**
+	 * checks subtract function
 	 * Test method for {@link primitives.Vector#subtract(primitives.Vector)}.
 	 */
 	@Test
@@ -63,6 +65,7 @@ public class VectorTests {
 	}
 
 	/**
+	 *  checks scale function
 	 * Test method for {@link primitives.Vector#scale(double)}.
 	 */
 	@Test
@@ -82,6 +85,7 @@ public class VectorTests {
      }
 	
 	/**
+	 * checks dotProduct function
 	 * Test method for {@link primitives.Vector#dotProduct(primitives.Vector)}.
 	 */
 	@Test
@@ -93,6 +97,7 @@ public class VectorTests {
 	}
 
 	/**
+	 * checks crossProduct function
 	 * Test method for {@link primitives.Vector#crossProduct(primitives.Vector)}.
 	 */
 	@Test
@@ -122,6 +127,7 @@ public class VectorTests {
 	}
 
 	/**
+	 * checks lengthSquared function
 	 * Test method for {@link primitives.Vector#lengthSquared()}.
 	 */
 	@Test
@@ -132,6 +138,7 @@ public class VectorTests {
 	}
 
 	/**
+	 * checks length function
 	 * Test method for {@link primitives.Vector#length()}.
 	 */
 	@Test
@@ -142,6 +149,7 @@ public class VectorTests {
 	}
 
 	/**
+	 * checks normalize function
 	 * Test method for {@link primitives.Vector#normalize()}.
 	 */
 	@Test
@@ -154,6 +162,7 @@ public class VectorTests {
 	}
 
 	/**
+	 * checks normalized function
 	 * Test method for {@link primitives.Vector#normalized()}.
 	 */
 	@Test

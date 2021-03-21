@@ -13,7 +13,6 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
-//import org.junit.Test;
 
 /**
  * Unit tests for geometries.Tube class
@@ -23,15 +22,18 @@ import primitives.Vector;
 public class TubeTests {
 
 	/**
-	 * Test method for {@link geometries.Tube#get_Normal(primitives.Point3D)}.
+	 * checks getNormal function
+	 * Test method for {@link geometries.Tube#getNormal(primitives.Point3D)}.
 	 */
 	@Test
 	public void testGetNormal() {
-		Ray r= new Ray( new Point3D(0,0,0),new Vector(0,1,0));
-		Tube t= new Tube(r,1);
-		Point3D p = new Point3D(1,0,1);
-		Vector n= t.getNormal(p);
-		assertTrue("bad normal to tube",isZero(r.getDir().dotProduct(n)));
+		// ============ Equivalence Partitions Tests ==============
+		Tube tube=new Tube(new Ray (Point3D.ZERO, new Vector(1,0,0)), 5);
+		assertEquals("Bad normal to tube", new Vector(0,0,1), tube.getNormal(new Point3D(1,0,5)));
+		// =============== Boundary Values Tests ==================
+		//if the point is parallel to the head of the ray
+		assertEquals("bad normal to tube",new Vector(0,0,1),tube.getNormal(new Point3D(0,0,5)));
+		
 	}
 
 }

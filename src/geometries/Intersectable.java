@@ -10,7 +10,7 @@ import  primitives.*;
 public interface Intersectable {
 
 	/**
-	 * 
+	 * function that finds intersections points
 	 * @param r ray
 	 * @return list of all intersections points
 	 */

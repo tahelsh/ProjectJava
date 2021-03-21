@@ -11,7 +11,7 @@ import primitives.Point3D;
 public interface Geometry extends Intersectable {
 
 	/**
-	 * return vector normal of the geometry
+	 * calculate a vector normal of a geometry
 	 * @param p
 	 * @return Vector normal for point
 	 */

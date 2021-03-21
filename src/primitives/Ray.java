@@ -1,5 +1,6 @@
 package primitives;
 import java.util.Objects;
+import static primitives.Util.*;
 
 public class Ray {
 
@@ -57,7 +58,7 @@ public class Ray {
 	 * @return p0 +t*v
 	 */
 	public Point3D getPoint(double t) {
-		return p0.add(dir.scale(t));
+		return isZero(t)?p0 : p0.add(dir.scale(t));
 	}
 
 }

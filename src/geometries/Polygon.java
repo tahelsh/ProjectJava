@@ -87,8 +87,29 @@ public class Polygon implements Geometry {
 	}
 
 	@Override
-	public List<Point3D> findIntersections(Ray r) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Point3D> findIntersections(Ray ray) {
+		List<Point3D> intersections = plane.findIntersections(ray);
+        if (intersections == null) return null;
+
+        Point3D p0 = ray.getP0();
+        Vector v = ray.getDir();
+
+        Vector v1  = vertices.get(1).subtract(p0);
+        Vector v2 = vertices.get(0).subtract(p0);
+        double sign = v.dotProduct(v1.crossProduct(v2));
+        if (isZero(sign))
+            return null;//ray contain in the plane of v1,v2
+
+        boolean positive = sign > 0;
+
+        for (int i = vertices.size() - 1; i > 0; --i) {
+            v1 = v2;
+            v2 = vertices.get(i).subtract(p0);
+            sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
+            if (isZero(sign)) return null;
+            if (positive != (sign >0)) return null;
+        }
+
+        return intersections;
 	}
 }

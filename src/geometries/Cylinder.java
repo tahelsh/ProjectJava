@@ -51,8 +51,6 @@ public class Cylinder extends Tube {
 		Vector v=point.subtract(axisRay.getP0().add(axisRay.getDir().scale(height)));//העליון הבסיס מרכז לבין שקיבלנו הנקודה בין ווקטור
 		if(v.length()<radius && isZero(v.dotProduct(axisRay.getDir())))//בסיס עליון
 			return axisRay.getDir().normalize();
-		if(point.subtract(axisRay.getP0()).length()==radius && isZero(point.subtract(axisRay.getP0()).dotProduct(axisRay.getDir())))
-			return point.subtract(axisRay.getP0()).normalize();
 		return super.getNormal(point);
 		
 	}
