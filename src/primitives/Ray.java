@@ -2,6 +2,11 @@ package primitives;
 import java.util.Objects;
 import static primitives.Util.*;
 
+/**
+ * class of Ray
+ * @author Tahel Sharon & Ayala Israeli
+ *
+ */
 public class Ray {
 
 	/**
