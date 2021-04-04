@@ -29,6 +29,9 @@ public class Geometries implements Intersectable {
  	this.geometries = new ArrayList<>();
      this.geometries.addAll(Arrays.asList(geometries));
  }
+ /**
+  * defalt C_tor
+  */
  public Geometries() 
  {
  	geometries = new ArrayList<>();
@@ -64,7 +67,7 @@ public class Geometries implements Intersectable {
 
      for (Intersectable geo : geometries) 
      {
-         List<Point3D> tempIntersections = geo.findIntersections(ray);
+         List<Point3D> tempIntersections = geo.findIntersections(ray);//list of single geometry
          if (tempIntersections != null) 
          {
              if (intersections == null)//for the first time

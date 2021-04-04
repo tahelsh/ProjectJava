@@ -53,7 +53,7 @@ public class TriangleTests {
         //TC12: ray through edge
         r = new Ray(new Point3D(-2, 1, -1), new Vector(0, 0, -1));
         assertEquals("ray through edge", null, tr.findIntersections(r));
-        //TC13: ray through vertex 
+        //TC13: ray through vertex kodkod ]][[[
         r = new Ray(new Point3D(0, 3, -2), new Vector(0, 0, -1));
         assertEquals("ray through vertex", null, tr.findIntersections(r));
 	}

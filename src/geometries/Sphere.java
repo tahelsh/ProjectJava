@@ -57,7 +57,7 @@ public class Sphere implements Geometry {
 	        Point3D rayP = ray.getP0();
 	        Vector rayV = ray.getDir();
 
-	        //vector between ray start and sphere center
+	        //vector between p0 start and sphere center-O
 	        Vector l = null;
 	        try 
 	        {
@@ -77,15 +77,15 @@ public class Sphere implements Geometry {
 	        //get the distance between the ray and the sphere center
 	        //pitagoras
 	        //להוריד ערך מוחלט?
-	        double d2 = Math.abs(lengthL * lengthL-tm * tm);
-	        double d = Math.sqrt(d2);
+	        double d2 = Math.abs(lengthL * lengthL-tm * tm);//pitagoras, d^2
+	        double d = Math.sqrt(d2);//d
 
 	        //the ray doesn't cross the sphere
 	        if (d>radius)
 	            return null;
 
 	        //the ray tangent the sphere
-	        if (isZero(d- radius)) 
+	        if (isZero(d- radius)) //if d==radius
 	        {                  
 	            return null;
 	        }
