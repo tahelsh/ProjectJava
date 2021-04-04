@@ -6,6 +6,7 @@ import java.util.List;
 
 import primitives.Ray;
 import primitives.Vector; 
+//גליל אינסופי
 
 /**
  * class of Tube, implements from Geometry interface
@@ -59,7 +60,8 @@ public class Tube implements Geometry {
 	    double t=point.subtract(o).dotProduct(v);
 	    if(!isZero(t))
 	    {
-	       o=o.add(v.scale(t));
+	       //o=o.add(v.scale(t))
+	    	o=axisRay.getPoint(t);
 	       return point.subtract(o).normalize();
 	    }
 	  //if the point is on the same level then return normal

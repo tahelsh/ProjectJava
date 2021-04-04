@@ -4,9 +4,21 @@ import static primitives.Util.*;
 
 public class Ray {
 
+	/**
+	 * start point
+	 */
 	private Point3D p0;
+	/**
+	 * direction vector
+	 */
 	private	Vector dir;
 	
+	/**
+	 * C-TOR that gets point and vector 
+	 * @param p0 start point 
+	 * @param dir direction vector
+	 * @throws IllegalArgumentException
+	 */
 	public Ray(Point3D p0, Vector dir) throws IllegalArgumentException {
 		super();
 		this.p0 = p0;
