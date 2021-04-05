@@ -25,7 +25,7 @@ public class Geometries implements Intersectable {
   * @see Intersectable
   */
  public Geometries(Intersectable ... geometries)
- {//לבדוק האם לזמן את הבנאי הריק???
+ {
  	this.geometries = new ArrayList<>();
      this.geometries.addAll(Arrays.asList(geometries));
  }
