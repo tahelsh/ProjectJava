@@ -16,7 +16,9 @@ import primitives.Ray;
  *
  */
 public class Geometries implements Intersectable {
-	private List<Intersectable> geometries ;
+	private List<Intersectable> geometries = new ArrayList<>();
+ ;
+
 	   /* ********* Constructors ***********/
 
  /**
@@ -26,16 +28,9 @@ public class Geometries implements Intersectable {
   */
  public Geometries(Intersectable ... geometries)
  {
- 	this.geometries = new ArrayList<>();
      this.geometries.addAll(Arrays.asList(geometries));
  }
- /**
-  * defalt C_tor
-  */
- public Geometries() 
- {
- 	geometries = new ArrayList<>();
-	}
+
 	/* ************* Operations ***************/
 
  /**
