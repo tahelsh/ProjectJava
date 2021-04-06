@@ -10,14 +10,26 @@ import geometries.*;
 
 import java.util.List;
 
+/**
+ * Integration Tests
+ * @author Tahel Sharon & Ayala Israeli
+ *
+ */
 public class IntegrationTests {
 
 	Camera cam1 = new Camera(Point3D.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0));
 	Camera cam2 = new Camera(new Point3D(0, 0, 0.5), new Vector(0, 0, -1), new Vector(0, 1, 0));
-
+/**
+ * Calculates how many intersections a view plane has with an intersectable
+ * @param Nx  How many pixels in row
+ * @param Ny How many pixels in column
+ * @param inter intersectable
+ * @param cam camera
+ * @return
+ */
 	private int CountIntersection(int Nx, int Ny, Intersectable inter, Camera cam) {
-		List<Point3D> results;
-		int count = 0;
+		List<Point3D> results;//list of intersections points of one intersectable
+		int count = 0;//counter of intersections points
 		for (int i = 0; i < Nx; ++i) {
 			for (int j = 0; j < Ny; ++j) {
 				Ray ray = cam.constructRayThroughPixel(3, 3, j, i);
