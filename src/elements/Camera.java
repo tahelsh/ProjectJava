@@ -1,7 +1,6 @@
 package elements;
 
 import primitives.Vector;
-import java.util.List;
 import static primitives.Util.*;
 import primitives.Point3D;
 import primitives.Ray;
@@ -23,6 +22,7 @@ public class Camera {
 	private double height;
 	private double distance; 
 
+	/* ********* C-TOR ********/
 	/**
 	 * C_TOR
 	 * 
@@ -42,15 +42,12 @@ public class Camera {
 		this.vUp = vUp.normalized();
 		this.vTo = vTo.normalized();
 		this.vRight = vTo.crossProduct(vUp).normalize();
-		// this.width = width;
-		// this.height = height;
-		// this.distance = distance;
 
 	}
 
+	/* ********* Getters ********/
 	/**
 	 * get P0
-	 * 
 	 * @return
 	 */
 	public Point3D getP0() {
@@ -59,7 +56,6 @@ public class Camera {
 
 	/**
 	 * get vUp
-	 * 
 	 * @return
 	 */
 	public Vector getvUp() {
@@ -68,7 +64,6 @@ public class Camera {
 
 	/**
 	 * get vTo
-	 * 
 	 * @return
 	 */
 	public Vector getvTo() {
@@ -77,7 +72,6 @@ public class Camera {
 
 	/**
 	 * get vRight
-	 * 
 	 * @return
 	 */
 	public Vector getvRight() {
@@ -86,7 +80,6 @@ public class Camera {
 
 	/**
 	 * get Width
-	 * 
 	 * @return
 	 */
 	public double getWidth() {
@@ -94,8 +87,7 @@ public class Camera {
 	}
 
 	/**
-	 * getHeight
-	 * 
+	 * get Height 
 	 * @return
 	 */
 	public double getHeight() {
@@ -104,13 +96,13 @@ public class Camera {
 
 	/**
 	 * get Distance
-	 * 
 	 * @return
 	 */
 	public double getDistance() {
 		return distance;
 	}
 
+	/* ********* Setters ********/
 	/**
 	 * set View Plane Size
 	 * 
@@ -136,7 +128,7 @@ public class Camera {
 	}
 
 	/**
-	 * 
+	 * construct ray through Pixel
 	 * @param nX How many pixels in row
 	 * @param nY How many pixels in column
 	 * @param j  column
@@ -152,9 +144,7 @@ public class Camera {
 
 		double Ry = height / nY;// height of each pixel
 		double Rx = width / nX;// width of each pixel
-
-		// double yi = ((i - nY / 2d) * Ry + Ry / 2d);// the middle of the pixel (xj,yi)
-		// double xj = ((j - nX / 2d) * Rx + Rx / 2d);// the middle of the pixel (xj,yi)
+		// the middle of the pixel (xj,yi)
 		double yi = (i - (nY - 1) / 2d) * Ry;
 		double xj = (j - (nX - 1) / 2d) * Rx;
 
