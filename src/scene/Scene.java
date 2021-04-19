@@ -4,6 +4,11 @@ import primitives.*;
 import elements.AmbientLight;
 import geometries.Geometries;
 
+/**
+ * class of Scene
+ * @author Tahel Sharon & Ayala Israeli
+ *
+ */
 public class Scene {
 
 	public String name;
@@ -16,8 +21,8 @@ public class Scene {
 	 * @param name
 	 */
 	public Scene(String name) {
-		name = name;
-		geometries = new Geometries();
+		this.name = name;
+		this.geometries = new Geometries();
 
 	}
 	 /**
@@ -25,7 +30,7 @@ public class Scene {
      * @param background the background color
      */
     public Scene setBackground(Color background) {
-        background = background;
+        this.background = background;
         return this;
     }
 
@@ -34,7 +39,7 @@ public class Scene {
      * @param light the light
      */
     public Scene setAmbientLight(AmbientLight light) {
-        ambientLight = light;
+        this.ambientLight = light;
         return this;
 
     }
