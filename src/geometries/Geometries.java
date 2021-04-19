@@ -20,7 +20,7 @@ public class Geometries implements Intersectable {
 	private List<Intersectable> geometries = new LinkedList<>();
  ;
 
-	   /* ********* Constructors ***********/
+	   /* ********* Constructors ************/
 
  /**
   * A new Container
