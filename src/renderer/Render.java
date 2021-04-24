@@ -12,6 +12,7 @@ import elements.Camera;
 import scene.Scene;
 
 /**
+ * class of render
  * @author Tahel Sharon and Ayala Israeli
  *
  */
