@@ -106,7 +106,7 @@ public class Ray {
 	
 	public GeoPoint findClosestGeoPoint(List<GeoPoint> points)
 	{
-		if(points==null)
+		if(points==null || points.size()==0)
 			return null;
 		double minDis=p0.distance(points.get(0).point);//the smallest distance
 		GeoPoint closestPoint=points.get(0);//the closest point

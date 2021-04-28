@@ -5,7 +5,7 @@ package renderer;
 
 import primitives.Color;
 import primitives.Ray;
-
+import geometries.Intersectable.GeoPoint;
 import java.util.MissingResourceException;
 
 import elements.Camera;

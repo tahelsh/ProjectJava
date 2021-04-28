@@ -80,34 +80,7 @@ public class Plane extends Geometry {
 		return "Plane [" + (q0 != null ? "q0=" + q0 + ", " : "") + (normal != null ? "normal=" + normal : "") + "]";
 	}
 
-	@Override
-	public List<Point3D> findIntersections(Ray ray) {
-		// get ray point and vector
-		Point3D rayP = ray.getP0();
-		Vector rayV = ray.getDir();
-
-		// check if the ray is parallel to the plane
-		if (isZero(normal.dotProduct(rayV))) // dotProduct = 0 => parallel
-			return null;
-
-		try {
-			double t = (normal.dotProduct(q0.subtract(rayP))) / (normal.dotProduct(rayV));
-
-			if (isZero(t))
-				// the ray starts on the plane
-				return null;
-			else if (t > 0.0) // the ray crosses the plane
-				return List.of((ray.getPoint(t)));
-			else // the ray doesn't cross the plane
-				return null;
-
-		} catch (IllegalArgumentException ex) {
-			// _p.subtract(rayP) is vector zero, which means the ray point is equal to the
-			// plane point (ray start on plane)
-			return null;
-		}
-	}
-
+	
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
 		// get ray point and vector
