@@ -25,8 +25,8 @@ public class RenderTests {
 	@Test
 	public void basicRenderTwoColorTest() {
 		Scene scene = new Scene("Test scene")//
-				.setAmbientLight(new AmbientLight(new Color(255, 191, 191), 1)) //
-				.setBackground(new Color(75, 127, 90));
+				.setAmbientLight(new AmbientLight(new Color(255, 191, 191), 1)) //pink
+				.setBackground(new Color(75, 127, 90));//green
 
 		scene.geometries.add(new Sphere( new Point3D(0, 0, -100),50),
 				new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100), new Point3D(-100, 100, -100)), // up
@@ -38,7 +38,7 @@ public class RenderTests {
 				new Triangle(new Point3D(100, 0, -100), new Point3D(0, -100, -100), new Point3D(100, -100, -100))); // down
 																													// right
 
-		ImageWriter imageWriter = new ImageWriter("base render test", 1000, 1000);
+		ImageWriter imageWriter = new ImageWriter("base render test", 1000, 1000);//רזולוציה
 		Render render = new Render() //
 				.setImageWriter(imageWriter) //
 				.setScene(scene) //
@@ -46,7 +46,7 @@ public class RenderTests {
 				.setRayTracer(new RayTracerBasic(scene));
 
 		render.renderImage();
-		render.printGrid(100, new Color(java.awt.Color.YELLOW));
+		render.printGrid(100, new Color(java.awt.Color.YELLOW));//interval
 		render.writeToImage();
 	}
 
@@ -85,7 +85,7 @@ public class RenderTests {
 				new Triangle(new Point3D(100, 0, -100), new Point3D(0, -100, -100), new Point3D(100, -100, -100)) // down right
 						.setEmmission(new Color(java.awt.Color.BLUE)));
 
-		ImageWriter imageWriter = new ImageWriter("color render test", 1000, 1000);
+		ImageWriter imageWriter = new ImageWriter("color render test", 1000, 1000);//רזולוציה
 		Render render = new Render() //
 				.setImageWriter(imageWriter) //
 				.setScene(scene) //
@@ -93,7 +93,7 @@ public class RenderTests {
 				.setRayTracer(new RayTracerBasic(scene));
 
 		render.renderImage();
-		render.printGrid(100, new Color(java.awt.Color.WHITE));
+		render.printGrid(100, new Color(java.awt.Color.WHITE));//interval
 		render.writeToImage();
 	}
 }

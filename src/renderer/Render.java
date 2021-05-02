@@ -96,7 +96,7 @@ public class Render {
 	/**
 	 * prints grid
 	 * 
-	 * @param interval the interval of the grid
+	 * @param interval the interval of the grid (
 	 * @param color color of the grid
 	 * @throws MissingResourceException
 	 */
