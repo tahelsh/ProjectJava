@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.Vector;
 import primitives.Color;
+import primitives.Material;
 import primitives.Point3D;
 
 /**
@@ -12,7 +13,8 @@ import primitives.Point3D;
  */
 
 public abstract class Geometry implements Intersectable {
-	Color emmission = Color.BLACK;
+	private Color emmission = Color.BLACK;
+	private Material material=new Material();
 
 	/**
 	 * calculate a vector normal of a geometry
@@ -27,20 +29,37 @@ public abstract class Geometry implements Intersectable {
 
 	/**
 	 * Get emmission
-	 * 
-	 * @return
+	 * @return emmision
 	 */
 	public Color getEmmission() {
 		return emmission;
 	}
 
 	/**
-	 * Set emmission
-	 * 
+	 * Set emmission 
 	 * @param emmission
+	 * @return the geometry
 	 */
 	public Geometry setEmmission(Color emmission) {
 		 this.emmission = emmission;
 		 return this;
+	}
+
+	/**
+	 * get material
+	 * @return the material
+	 */
+	public Material getMaterial() {
+		return material;
+	}
+
+	/**
+	 * set material
+	 * @param material
+	 * @return the geometry
+	 */
+	public Geometry setMaterial(Material material) {
+		this.material = material;
+		return this;
 	}
 }
