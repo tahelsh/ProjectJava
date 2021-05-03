@@ -21,7 +21,7 @@ public class PointLight extends Light implements LightSource {
 	private double kC;
 
 	/* ********* Constructors ***********/
-	public PointLight(Color intensity, Point3D position, double kQ, double kL, double kC) {
+	public PointLight(Color intensity, Point3D position, double kC, double kL, double kQ ) {
 		super(intensity);
 		this.position = position;
 		this.kQ = kQ;

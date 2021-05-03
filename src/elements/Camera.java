@@ -7,7 +7,6 @@ import primitives.Ray;
 
 /**
  * class of Camera
- * 
  * @author Tahel Sharon & Ayala Israeli
  *
  */

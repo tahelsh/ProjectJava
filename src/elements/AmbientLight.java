@@ -3,12 +3,13 @@ package elements;
 import primitives.*;
 
 /**
- * class of Ambient light
+ * class of Ambient light extends Light class
  * @author Tahel Sharon and Ayala Israeli
  *
  */
 public class AmbientLight extends Light{
 	
+	/* ********* Constructors ***********/
 	/**
 	 * CTOR that gets IA color parameter and scale KA- discount factor
 	 * @param IA color
