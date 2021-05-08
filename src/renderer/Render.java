@@ -18,7 +18,7 @@ import scene.Scene;
  *
  */
 public class Render {
-	private Scene scene;// scene
+	//private Scene scene;// scene
 	private Camera camera;// camera
 	private ImageWriter imageWriter;// imagewriter
 	private RayTracerBase rayTracer;// rayTracer
@@ -30,10 +30,10 @@ public class Render {
 	 * @param scene
 	 * @return the render
 	 */
-	public Render setScene(Scene scene) {
-		this.scene = scene;
-		return this;
-	}
+	//public Render setScene(Scene scene) {
+	//	this.scene = scene;
+	//	return this;
+	//}
 
 	/**
 	 * set value of Camera
@@ -74,8 +74,8 @@ public class Render {
 	 * @throws MissingResourceException
 	 */
 	public void renderImage() throws MissingResourceException {
-		if (scene == null)
-			throw new MissingResourceException("The value of scene is null", "Render", null);
+		//if (scene == null)
+		//	throw new MissingResourceException("The value of scene is null", "Render", null);
 		if (camera == null)
 			throw new MissingResourceException("The value of camera is null", "Render", null);
 		if (imageWriter == null)

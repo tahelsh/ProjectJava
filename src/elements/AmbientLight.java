@@ -11,6 +11,12 @@ public class AmbientLight extends Light{
 	
 	/* ********* Constructors ***********/
 	/**
+	 * A default C-TOR, the intensity is Black
+	 */
+	public AmbientLight() {
+		super(Color.BLACK);
+	}
+	/**
 	 * CTOR that gets IA color parameter and scale KA- discount factor
 	 * @param IA color
 	 * @param KA a discount factor
