@@ -11,7 +11,7 @@ public class AmbientLight extends Light{
 	
 	/* ********* Constructors ***********/
 	/**
-	 * A default C-TOR, the intensity is Black
+	 * A default C-TOR, the intensity color is Black
 	 */
 	public AmbientLight() {
 		super(Color.BLACK);

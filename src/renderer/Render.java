@@ -18,22 +18,11 @@ import scene.Scene;
  *
  */
 public class Render {
-	//private Scene scene;// scene
 	private Camera camera;// camera
 	private ImageWriter imageWriter;// imagewriter
 	private RayTracerBase rayTracer;// rayTracer
 
 	// ***************** Setters ********************** //
-	/**
-	 * set value of scene
-	 * 
-	 * @param scene
-	 * @return the render
-	 */
-	//public Render setScene(Scene scene) {
-	//	this.scene = scene;
-	//	return this;
-	//}
 
 	/**
 	 * set value of Camera
