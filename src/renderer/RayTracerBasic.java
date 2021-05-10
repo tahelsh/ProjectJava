@@ -3,6 +3,8 @@
  */
 package renderer;
 
+import primitives.*;
+
 import java.util.List;
 
 import elements.LightSource;
@@ -21,6 +23,7 @@ import scene.Scene;
  *
  */
 public class RayTracerBasic extends RayTracerBase {
+	private static final double DELTA = 0.1;
 
 	/**
 	 * constructor that gets a scene
@@ -39,13 +42,13 @@ public class RayTracerBasic extends RayTracerBase {
 		GeoPoint closestPoint = ray.findClosestGeoPoint(intersections);
 		return calcColor(closestPoint, ray);
 	}
-	
+
 	/**
 	 * calculate the color of a point
 	 * 
 	 * @param intersection a point of intersection
 	 * @param ray
-	 * @return the color of the point
+	 * @return the color of the point by phong model
 	 */
 	private Color calcColor(GeoPoint intersection, Ray ray) {
 		Color color = scene.ambientLight.getIntensity().add(intersection.geometry.getEmmission());
@@ -63,33 +66,35 @@ public class RayTracerBasic extends RayTracerBase {
 	// }
 
 	/**
-	 * calc Local Effects
-	 * @param intersection
-	 * @param ray
-	 * @return
+	 * calc Local Effects - diffusive and Specular
+	 * 
+	 * @param intersection - GeoPoint intersection
+	 * @param ray          - Ray of a center of pixel
+	 * @return calculate the part of phong model :( kd*|l*n| +ks*(-v*r)^nsh)*IL
 	 */
 	private Color calcLocalEffects(GeoPoint intersection, Ray ray) {
-		Vector v = ray.getDir();
+		Vector v = ray.getDir();// ray direction
 		Vector n = intersection.geometry.getNormal(intersection.point);
 		double nv = Util.alignZero(n.dotProduct(v));
-		if (nv == 0)
+		if (nv == 0)// there is no diffusive and Specular
 			return Color.BLACK;
 		int nShininess = intersection.geometry.getMaterial().nShininess;
-		double kd = intersection.geometry.getMaterial().kD, ks = intersection.geometry.getMaterial().kS;
+		double kd = intersection.geometry.getMaterial().kD;
+		double ks = intersection.geometry.getMaterial().kS;
 		Color color = Color.BLACK;
 		for (LightSource lightSource : scene.lights) {
 			Vector l = lightSource.getL(intersection.point);
 			double nl = Util.alignZero(n.dotProduct(l));
 			if (nl * nv > 0) { // sign(nl) == sing(nv)
-				Color lightIntensity = lightSource.getIntensity(intersection.point);
-				color = color.add(calcDiffusive(kd, nl, lightIntensity),
-						calcSpecular(ks, l, n, nl, v, nShininess, lightIntensity));
+				if (unshaded(l, n, intersection, lightSource)) {
+					Color lightIntensity = lightSource.getIntensity(intersection.point);
+					color = color.add(calcDiffusive(kd, nl, lightIntensity),
+							calcSpecular(ks, l, n, nl, v, nShininess, lightIntensity));
+				}
 			}
 		}
 		return color;
 	}
-
-	
 
 	/**
 	 * Calculate Specular component of light reflection.
@@ -114,7 +119,7 @@ public class RayTracerBasic extends RayTracerBase {
 	private Color calcSpecular(double ks, Vector l, Vector n, double nl, Vector v, int nShininess, Color ip) {
 		double p = nShininess;
 
-		Vector R = l.add(n.scale(-2 * nl)); // nl must not be zero!
+		Vector R = l.add(n.scale(-2 * nl)); // (r= l-2 *(l*n)*n) nl must not be zero!
 		double minusVR = -Util.alignZero(R.dotProduct(v));
 		if (minusVR <= 0) {
 			return Color.BLACK; // view from direction opposite to r vector
@@ -142,6 +147,31 @@ public class RayTracerBasic extends RayTracerBase {
 		if (nl < 0)
 			nl = -nl;
 		return ip.scale(nl * kd);
+	}
+
+	/**
+	 * check if there is shadow
+	 * 
+	 * @param l  vector l - light direction
+	 * @param n  normal
+	 * @param gp geo point
+	 * @return
+	 */
+	private boolean unshaded(Vector l, Vector n, GeoPoint gp, LightSource lightSource) {
+		Vector lightDirection = l.scale(-1); // from point to light source
+		Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);// where we need to move the point
+		Point3D point = gp.point.add(delta);// moving the point
+		Ray lightRay = new Ray(point, lightDirection);// the new ray after the moving
+		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+		if (intersections == null)
+			return true;// if there are not intersection points - unshadow
+		double lightDistance = lightSource.getDistance(gp.point);
+		for (GeoPoint g : intersections) {
+			if (Util.alignZero(g.point.distance(point) - lightDistance) <= 0)
+				return false;
+		}
+		return true;
+
 	}
 
 }
