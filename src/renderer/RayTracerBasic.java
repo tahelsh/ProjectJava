@@ -24,6 +24,8 @@ import scene.Scene;
  */
 public class RayTracerBasic extends RayTracerBase {
 	private static final double DELTA = 0.1;
+	private static final int MAX_CALC_COLOR_LEVEL = 10;
+	private static final double MIN_CALC_COLOR_K = 0.001;
 
 	/**
 	 * constructor that gets a scene
@@ -36,23 +38,76 @@ public class RayTracerBasic extends RayTracerBase {
 
 	@Override
 	public Color traceRay(Ray ray) {
-		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
-		if (intersections == null)
+//		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
+//		if (intersections == null)
+//			return scene.background;
+//		GeoPoint closestPoint = ray.findClosestGeoPoint(intersections);
+		GeoPoint closestPoint = findClosestIntersection(ray);
+		if (closestPoint == null)
 			return scene.background;
-		GeoPoint closestPoint = ray.findClosestGeoPoint(intersections);
 		return calcColor(closestPoint, ray);
 	}
 
 	/**
 	 * calculate the color of a point
 	 * 
-	 * @param intersection a point of intersection
-	 * @param ray
-	 * @return the color of the point by phong model
+	 * @param geopoint - a point of intersection
+	 * @param ray      - ray of a center of pixel
+	 * @return the color of the point by phong model + reflacted and refracted
 	 */
-	private Color calcColor(GeoPoint intersection, Ray ray) {
-		Color color = scene.ambientLight.getIntensity().add(intersection.geometry.getEmmission());
+	private Color calcColor(GeoPoint geopoint, Ray ray) {
+		return calcColor(geopoint, ray, MAX_CALC_COLOR_LEVEL, 1.0).add(scene.ambientLight.getIntensity());
+	}
+
+	/**
+	 * calculate the color of a point, recursion
+	 * 
+	 * @param intersection - a point of intersection
+	 * @param ray          - ray of a center of pixel
+	 * @param level        - level of the recursion
+	 * @param k            - The multiplication factor of kR and kT
+	 * @return local effect + global effect
+	 */
+	private Color calcColor(GeoPoint intersection, Ray ray, int level, double k) {
+		Color color = intersection.geometry.getEmmission();
 		color = color.add(calcLocalEffects(intersection, ray));
+		return 1 == level ? color : color.add(calcGlobalEffects(intersection, ray, level, k));
+	}
+
+	/**
+	 * calc Global Effects - reflected and refracted
+	 * 
+	 * @param geopoint - geopoint
+	 * @param ray      - Ray of a center of pixel
+	 * @param level    - level of the recursion
+	 * @param k        - The multiplication factor of kR and kT
+	 * @return color after global effect
+	 */
+	private Color calcGlobalEffects(GeoPoint geopoint, Ray ray, int level, double k) {
+		if (level == 1 || k < MIN_CALC_COLOR_K) {
+			return Color.BLACK;
+		}
+		Color color = Color.BLACK;
+		Vector n = geopoint.geometry.getNormal(geopoint.point);
+		Material material = geopoint.geometry.getMaterial();
+		// calculate reflected
+		double kr = material.kR;
+		double kkr = k * kr;
+		if (kkr > MIN_CALC_COLOR_K) {
+			Ray reflectedRay = constructReflectedRay(geopoint.point, ray, n);
+			GeoPoint reflectedPoint = findClosestIntersection(reflectedRay);
+			if (reflectedPoint != null)
+				color = color.add(calcColor(reflectedPoint, reflectedRay, level - 1, kkr).scale(kr));
+		}
+		// calculate refracted
+		double kt = material.kT;
+		double kkt = k * kt;
+		if (kkt > MIN_CALC_COLOR_K) {
+			Ray refractedRay = constructRefractedRay(geopoint.point, ray, n);
+			GeoPoint refractedPoint = findClosestIntersection(refractedRay);
+			if (refractedPoint != null)
+				color = color.add(calcColor(refractedPoint, refractedRay, level - 1, kkt).scale(kt));
+		}
 		return color;
 	}
 
@@ -167,11 +222,80 @@ public class RayTracerBasic extends RayTracerBase {
 			return true;// if there are not intersection points - unshadow
 		double lightDistance = lightSource.getDistance(gp.point);
 		for (GeoPoint g : intersections) {
-			if (Util.alignZero(g.point.distance(point) - lightDistance) <= 0)
+			if ((Util.alignZero(g.point.distance(point) - lightDistance) <= 0) && (gp.geometry.getMaterial().kT == 0))
 				return false;
 		}
 		return true;
 
+	}
+
+	/**
+	 * construct refracted ray
+	 * 
+	 * @param pointGeo - intersection point
+	 * @param inRay    - ray v from the camera
+	 * @return refracted ray
+	 */
+	private Ray constructRefractedRay(Point3D pointGeo, Ray inRay, Vector n) {
+		Vector v = inRay.getDir();
+		Vector delta = n.scale(n.dotProduct(v) > 0 ? DELTA : -DELTA);// where we need to move the point
+		Point3D pointDelta = pointGeo.add(delta);// moving the pointF
+		return new Ray(pointDelta, inRay.getDir());
+	}
+
+	/**
+	 * construct reflected ray
+	 * 
+	 * @param pointGeo - intersection point
+	 * @param inRay    - ray v from the camera
+	 * @param n        - normal from the geometry in the intersection point
+	 * @return reflected ray
+	 */
+	private Ray constructReflectedRay(Point3D pointGeo, Ray inRay, Vector n) {
+
+		Vector v = inRay.getDir();
+		double vn = v.dotProduct(n);
+
+		if (Util.isZero(vn)) {
+			return null;
+		}
+		Vector delta = n.scale(n.dotProduct(v) > 0 ? DELTA : -DELTA);// where we need to move the point
+		Point3D pointDelta = pointGeo.add(delta);// moving the point
+
+		Vector r = v.subtract(n.scale(2 * vn));
+		return new Ray(pointDelta, r);
+
+	}
+
+	/**
+	 * calculate intersection points with the ray and return the closest point
+	 * 
+	 * @param ray - ray
+	 * @return Closest intersection point
+	 */
+	private GeoPoint findClosestIntersection(Ray ray) {
+
+		if (ray == null) {
+			return null;
+		}
+
+//            GeoPoint closestPoint = null;
+//            double closestDistance = Double.MAX_VALUE;
+//            Point3D ray_p0 = ray.getP0();
+
+		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
+		return ray.findClosestGeoPoint(intersections);
+		// if (intersections == null)
+//               return null;
+//
+//            for (GeoPoint geoPoint : intersections) {
+//                double distance = ray_p0.distance(geoPoint.point);
+//                if (distance < closestDistance) {
+//                    closestDistance = distance;
+//                    closestPoint = geoPoint;
+//                }
+//            }
+		// return closestPoint;
 	}
 
 }
