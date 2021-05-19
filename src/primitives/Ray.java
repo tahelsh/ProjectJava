@@ -29,7 +29,7 @@ public class Ray {
 	public Ray(Point3D p0, Vector dir) throws IllegalArgumentException {
 		super();
 		this.p0 = p0;
-		this.dir = dir.normalize();
+		this.dir = dir.normalized();
 	}
 
 	@Override

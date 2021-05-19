@@ -40,8 +40,9 @@ public class RayTracerBasic extends RayTracerBase {
 	public Color traceRay(Ray ray) {
 //		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
 //		if (intersections == null)
-//			return scene.background;
+//			return this.scene.background;
 //		GeoPoint closestPoint = ray.findClosestGeoPoint(intersections);
+//		return calcColor(closestPoint, ray);// calculate the color of the point
 		GeoPoint closestPoint = findClosestIntersection(ray);
 		if (closestPoint == null)
 			return scene.background;
@@ -110,15 +111,6 @@ public class RayTracerBasic extends RayTracerBase {
 		}
 		return color;
 	}
-
-	/// **
-	// * calculate the color of a point
-	// * @param point a point
-	// * @return the color of the point
-	// */
-	// private Color calcColor(GeoPoint point) {
-	// return scene.ambientLight.getIntensity().add(point.geometry.getEmmission());
-	// }
 
 	/**
 	 * calc Local Effects - diffusive and Specular
@@ -222,7 +214,7 @@ public class RayTracerBasic extends RayTracerBase {
 			return true;// if there are not intersection points - unshadow
 		double lightDistance = lightSource.getDistance(gp.point);
 		for (GeoPoint g : intersections) {
-			if ((Util.alignZero(g.point.distance(point) - lightDistance) <= 0) && (gp.geometry.getMaterial().kT == 0))
+			if (Util.alignZero(g.point.distance(point) - lightDistance) <= 0 && g.geometry.getMaterial().kT == 0)
 				return false;
 		}
 		return true;
@@ -238,6 +230,7 @@ public class RayTracerBasic extends RayTracerBase {
 	 */
 	private Ray constructRefractedRay(Point3D pointGeo, Ray inRay, Vector n) {
 		Vector v = inRay.getDir();
+		// Vector r = v;
 		Vector delta = n.scale(n.dotProduct(v) > 0 ? DELTA : -DELTA);// where we need to move the point
 		Point3D pointDelta = pointGeo.add(delta);// moving the pointF
 		return new Ray(pointDelta, inRay.getDir());
@@ -259,10 +252,9 @@ public class RayTracerBasic extends RayTracerBase {
 		if (Util.isZero(vn)) {
 			return null;
 		}
-		Vector delta = n.scale(n.dotProduct(v) > 0 ? DELTA : -DELTA);// where we need to move the point
+		Vector r = (v.subtract(n.scale(2 * vn))).normalized();
+		Vector delta = n.scale(n.dotProduct(r) > 0 ? DELTA : -DELTA);// where we need to move the point
 		Point3D pointDelta = pointGeo.add(delta);// moving the point
-
-		Vector r = v.subtract(n.scale(2 * vn));
 		return new Ray(pointDelta, r);
 
 	}
@@ -279,23 +271,24 @@ public class RayTracerBasic extends RayTracerBase {
 			return null;
 		}
 
-//            GeoPoint closestPoint = null;
-//            double closestDistance = Double.MAX_VALUE;
-//            Point3D ray_p0 = ray.getP0();
+//		GeoPoint closestPoint = null;
+//		double closestDistance = Double.MAX_VALUE;
+//		Point3D ray_p0 = ray.getP0();
 
 		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
 		return ray.findClosestGeoPoint(intersections);
-		// if (intersections == null)
-//               return null;
+//		if (intersections == null)
+//			return null;
 //
-//            for (GeoPoint geoPoint : intersections) {
-//                double distance = ray_p0.distance(geoPoint.point);
-//                if (distance < closestDistance) {
-//                    closestDistance = distance;
-//                    closestPoint = geoPoint;
-//                }
-//            }
-		// return closestPoint;
+//		for (GeoPoint geoPoint : intersections) {
+//			double distance = ray_p0.distance(geoPoint.point);
+//			if (distance < closestDistance) {
+//				closestDistance = distance;
+//				closestPoint = geoPoint;
+//			}
+//		}
+//		return closestPoint;
 	}
+	// }
 
 }
