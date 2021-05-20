@@ -91,7 +91,7 @@ public class RayTracerBasic extends RayTracerBase {
 		Color color = Color.BLACK;
 		Vector n = geopoint.geometry.getNormal(geopoint.point);
 		Material material = geopoint.geometry.getMaterial();
-		// calculate reflected
+		// calculate reflectedd
 		double kr = material.kR;
 		double kkr = k * kr;
 		if (kkr > MIN_CALC_COLOR_K) {
