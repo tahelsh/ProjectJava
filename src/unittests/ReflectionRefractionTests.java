@@ -6,8 +6,7 @@ package unittests;
 import org.junit.Test;
 
 import elements.*;
-import geometries.Sphere;
-import geometries.Triangle;
+import geometries.*;
 import primitives.*;
 import renderer.*;
 import scene.Scene;
@@ -111,6 +110,42 @@ public class ReflectionRefractionTests {
 				.setkL(4E-5).setkQ(2E-7));
 
 		ImageWriter imageWriter = new ImageWriter("refractionShadow", 600, 600);
+		Render render = new Render() //
+				.setImageWriter(imageWriter) //
+				.setCamera(camera) //
+				.setRayTracer(new RayTracerBasic(scene));
+
+		render.renderImage();
+		render.writeToImage();
+	}
+
+	@Test
+	public void ourPicture() {
+		Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+				.setViewPlaneSize(200, 200).setDistance(1000);
+		Geometry triangle1 = new Triangle( //
+				new Point3D(-150, -150, -150), new Point3D(150, -150, -150), new Point3D(75, 75, -150));
+//						.setEmmission(new Color(java.awt.Color.BLUE));
+		Geometry triangle2 = new Triangle( //
+				new Point3D(-150, -150, -150), new Point3D(-70, 70, -50), new Point3D(75, 75, -150));
+//						.setEmmission(new Color(java.awt.Color.BLUE));
+
+		scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
+		scene.geometries.add(
+//				new Polygon(new Point3D(-150, -150, -150), new Point3D(75, 75, -150),
+//						new Point3D(75, 75, 50), new Point3D(-150, -150, 50)) //
+//								.setEmmission(new Color(20, 20, 20)) //
+//								.setMaterial(new Material().setkR(1)).setEmmission(new Color(java.awt.Color.RED)),
+				triangle1.setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(300).setkR(1)),
+				triangle2.setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(300).setkR(1)),
+				new Sphere(new Point3D(-23, -23, -150), 30).setEmmission(new Color(java.awt.Color.RED))
+						.setMaterial(new Material().setkR(0.5).setkD(0.5).setnShininess(30).setkS(0.5)),
+				new Sphere(new Point3D(169, -190, -30), 30).setEmmission(new Color(java.awt.Color.RED))
+						.setMaterial(new Material().setkR(0.5).setkD(0.5).setnShininess(30).setkS(0.5)),
+						new Polygon(new Point3D(94, -282, -50), new Point3D(187, -361, -50), new Point3D(103, -348, -50),new Point3D(167, -280, -50)));
+		scene.lights.add(new PointLight(new Color(500, 250, 250), new Point3D(10, -10, -130)) //
+				.setkL(0.0001).setkQ(0.000005));
+		ImageWriter imageWriter = new ImageWriter("trilili", 600, 600);
 		Render render = new Render() //
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
