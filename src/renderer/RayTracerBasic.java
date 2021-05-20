@@ -99,6 +99,8 @@ public class RayTracerBasic extends RayTracerBase {
 			GeoPoint reflectedPoint = findClosestIntersection(reflectedRay);
 			if (reflectedPoint != null)
 				color = color.add(calcColor(reflectedPoint, reflectedRay, level - 1, kkr).scale(kr));
+			else
+				color=color.add(scene.background.scale(kr));
 		}
 		// calculate refracted
 		double kt = material.kT;
@@ -108,6 +110,8 @@ public class RayTracerBasic extends RayTracerBase {
 			GeoPoint refractedPoint = findClosestIntersection(refractedRay);
 			if (refractedPoint != null)
 				color = color.add(calcColor(refractedPoint, refractedRay, level - 1, kkt).scale(kt));
+			else
+				color=color.add(scene.background.scale(kt));
 		}
 		return color;
 	}
