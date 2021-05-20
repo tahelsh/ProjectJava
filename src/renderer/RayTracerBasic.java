@@ -126,7 +126,7 @@ public class RayTracerBasic extends RayTracerBase {
 		Vector v = ray.getDir();// ray direction
 		Vector n = intersection.geometry.getNormal(intersection.point);
 		double nv = Util.alignZero(n.dotProduct(v));
-		if (nv == 0)// there is no diffusive and Specular
+		if (Util.isZero(nv))// there is no diffusive and Specular
 			return Color.BLACK;
 		int nShininess = intersection.geometry.getMaterial().nShininess;
 		double kd = intersection.geometry.getMaterial().kD;
@@ -138,7 +138,7 @@ public class RayTracerBasic extends RayTracerBase {
 			if (nl * nv > 0) { // sign(nl) == sing(nv)
 				double ktr = transparency( l, n, intersection,lightSource);
 				if (ktr * k > MIN_CALC_COLOR_K) {
-					Color lightIntensity = lightSource.getIntensity(intersection.point);
+					Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);
 					color = color.add(calcDiffusive(kd, nl, lightIntensity),
 							calcSpecular(ks, l, n, nl, v, nShininess, lightIntensity));
 				}
@@ -236,9 +236,6 @@ public class RayTracerBasic extends RayTracerBase {
 	 */
 	private double transparency(Vector l, Vector n, GeoPoint gp, LightSource lightSource) {
 		Vector lightDirection = l.scale(-1); // from point to light source
-//		Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);// where we need to move the point
-//		Point3D point = gp.point.add(delta);// moving the point
-//		Ray lightRay = new Ray(point, lightDirection);// the new ray after the moving
 		Ray lightRay = new Ray(gp.point, lightDirection, n);
 		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
 		if (intersections == null)
@@ -247,7 +244,7 @@ public class RayTracerBasic extends RayTracerBase {
 		double lightDistance = lightSource.getDistance(gp.point);
 		for (GeoPoint g : intersections) {
 			if (Util.alignZero(g.point.distance(gp.point) - lightDistance) <= 0) {
-				ktr *= gp.geometry.getMaterial().kT;
+				ktr *= g.geometry.getMaterial().kT;
 				if (ktr < MIN_CALC_COLOR_K)
 					return 0.0;
 			}
@@ -265,10 +262,6 @@ public class RayTracerBasic extends RayTracerBase {
 	 */
 	private Ray constructRefractedRay(Point3D pointGeo, Ray inRay, Vector n) {
 		Vector v = inRay.getDir();
-		// Vector r = v;
-//		Vector delta = n.scale(n.dotProduct(v) > 0 ? DELTA : -DELTA);// where we need to move the point
-//		Point3D pointDelta = pointGeo.add(delta);// moving the pointF
-//		return new Ray(pointDelta, inRay.getDir());
 		return new Ray(pointGeo, v, n);
 	}
 
@@ -289,9 +282,6 @@ public class RayTracerBasic extends RayTracerBase {
 			return null;
 		}
 		Vector r = (v.subtract(n.scale(2 * vn))).normalized();
-//		Vector delta = n.scale(n.dotProduct(r) > 0 ? DELTA : -DELTA);// where we need to move the point
-//		Point3D pointDelta = pointGeo.add(delta);// moving the point
-//		return new Ray(pointDelta, r);
 		return new Ray(pointGeo, r, n);
 
 	}
