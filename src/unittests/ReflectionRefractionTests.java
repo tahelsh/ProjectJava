@@ -142,8 +142,9 @@ public class ReflectionRefractionTests {
 						.setMaterial(new Material().setkR(0.5).setkD(0.5).setnShininess(30).setkS(0.5)),
 				new Sphere(new Point3D(169, -190, -30), 30).setEmmission(new Color(java.awt.Color.RED))
 						.setMaterial(new Material().setkR(0.5).setkD(0.5).setnShininess(30).setkS(0.5)),
-				new Polygon(new Point3D(113,-200,-20), new Point3D(157,-178,-20), new Point3D(226,-270,-20),
-						new Point3D(185,-302,-20)).setEmmission(new Color(java.awt.Color.BLUE)));
+				new Polygon(new Point3D(-52, -52, -100), new Point3D(-52, 10, -100), new Point3D(8, 10, -100),
+						new Point3D(8, -52, -100)).setEmmission(new Color(java.awt.Color.BLUE))
+								.setMaterial(new Material().setkT(0.75)));
 		scene.lights.add(new PointLight(new Color(500, 250, 250), new Point3D(10, -10, -130)) //
 				.setkL(0.0001).setkQ(0.000005));
 		ImageWriter imageWriter = new ImageWriter("trilili", 600, 600);
