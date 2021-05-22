@@ -192,18 +192,6 @@ public class ReflectionRefractionTests {
 						.setMaterial(new Material().setkR(1).setkD(0.5).setnShininess(30).setkS(0.5)),
 				new Sphere(new Point3D(10, 40, -150), 25).setEmmission(new Color(0,50,0))//green
 						.setMaterial(new Material().setkT(1).setkD(0.5).setnShininess(30).setkS(0.5)));
-//				new Cylinder(new Ray(new Point3D(50, 33, -150), new Vector(-83,-86,0)), 100, 200)
-//						.setEmmission(new Color(java.awt.Color.PINK)),
-//				new Polygon(new Point3D(18, 1, -160), new Point3D(18, 65, -160), new Point3D(85, 65, -160),
-//						new Point3D(85, 1, -160)).setEmmission(new Color(java.awt.Color.GREEN))
-//								.setMaterial(new Material().setkT(0.75)),
-//				new Polygon(new Point3D(-62, -82, -100), new Point3D(-62, -20, -100), new Point3D(-2, -20, -100),
-//						new Point3D(-2, -82, -100)).setEmmission(new Color(java.awt.Color.BLUE))
-//								.setMaterial(new Material().setkT(0.75)));
-//		scene.lights.add(new PointLight(new Color(500, 250, 250), new Point3D(10, -10, 0)) //
-//				.setkL(0.001).setkQ(0.0005));
-//		scene.lights.add(new PointLight(new Color(500, 250, 250), new Point3D(-10, 150, -100)) //
-//				.setkL(0.001).setkQ(0.0005));
 		scene.lights.add(new PointLight(new Color(100, 100, 500), new Point3D(-50, -50, 50))//
 				.setkL(0.00001).setkQ(0.00001));
 
