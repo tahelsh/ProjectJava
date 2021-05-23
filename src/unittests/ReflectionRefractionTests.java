@@ -166,40 +166,82 @@ public class ReflectionRefractionTests {
 
 	@Test
 	public void ourPicture2() {
-		Camera camera = new Camera(new Point3D(0, 0, 1500), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-				.setViewPlaneSize(200, 200).setDistance(1000);
-		Geometry triangle1 = new Triangle( //
-				new Point3D(-150, -150, -300), new Point3D(150, -150, -300), new Point3D(75, 75, -300));
-//						.setEmmission(new Color(java.awt.Color.BLUE));
-		Geometry triangle2 = new Triangle( //
-				new Point3D(-150, -150, -500), new Point3D(-70, 70, -500), new Point3D(75, 75, -500));
-//						.setEmmission(new Color(java.awt.Color.BLUE));
-
+		Camera camera = new Camera(new Point3D(5, -10, 1000), new Vector(-0.035, 0, -1).normalized(),
+				new Vector(0, 1, 0)) //
+						.setViewPlaneSize(200, 200).setDistance(1000);
 		scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.3));
 		scene.geometries.add(
 				new Polygon(new Point3D(-150, -160, -10), new Point3D(-150, 90, -400), new Point3D(165, 90, -400),
-						new Point3D(165, -160, -10)).setMaterial(new Material().setkR(1).setkD(0.5))
+						new Point3D(165, -160, -10)).setMaterial(new Material().setkR(0.3).setkT(0.25).setkD(0.5))
 								.setEmmission(new Color(0, 0, 0)),
-				// triangle1.setMaterial(new
-				// Material().setkD(0.5).setkS(0.5).setnShininess(300).setkR(0.5)),
-				//triangle2.setMaterial(new Material().setkR(1)),
-				new Triangle(new Point3D(50, -10, -150), new Point3D(-30, -10, -150), new Point3D(10, -70, -150))
-						.setEmmission(new Color(200, 70, 50))// orange
-						.setMaterial(new Material().setkR(1).setkD(1).setnShininess(300).setkS(0.5)),
-				new Sphere(new Point3D(-8, 10, -150), 25).setEmmission(new Color(0, 30, 60))// blue icecream
+				new Triangle(new Point3D(49, 0, -150), new Point3D(-33, 0, -150), new Point3D(10, -70, -150))
+						.setEmmission(new Color(255, 140, 190)), // orange
+
+				new Triangle(new Point3D(49, 0, -150), new Point3D(10, -70, -150), new Point3D(59, 3, -150))
+						.setEmmission(new Color(255, 140, 190)), // orange
+				new Sphere(new Point3D(-8, 20, -150), 25).setEmmission(new Color(0, 30, 60))// blue icecream
 						.setMaterial(new Material().setkT(1).setkD(0.5).setnShininess(30).setkS(0.5)),
-				new Sphere(new Point3D(35, 10, -150), 25).setEmmission(new Color(50, 0, 0))// red icecream
+				new Sphere(new Point3D(35, 20, -150), 25).setEmmission(new Color(50, 0, 0))// red icecream
 						.setMaterial(new Material().setkR(1).setkD(0.5).setnShininess(30).setkS(0.5)),
-				new Sphere(new Point3D(10, 40, -150), 25).setEmmission(new Color(0, 50, 0))// green icecream
+				new Sphere(new Point3D(10, 50, -150), 25).setEmmission(new Color(0, 50, 0))// green icecream
 						.setMaterial(new Material().setkT(1).setkD(0.5).setnShininess(30).setkS(0.5)),
-				new Sphere(new Point3D(-140, 0, -150), 10).setEmmission(new Color(150, 0, 150))// blue
-						.setMaterial(new Material().setkT(0.5).setkD(0.75).setnShininess(30).setkS(1)),
-				new Sphere(new Point3D(150, 0, -150), 10).setEmmission(new Color(80, 80, 18))// blue
-						.setMaterial(new Material().setkR(1).setkD(0.75).setnShininess(30).setkS(1)),
-				new Sphere(new Point3D(-60, 80, -160), 10).setEmmission(new Color(80, 80, 18))// blue
-						.setMaterial(new Material().setkR(1).setkD(0.75).setnShininess(30).setkS(1)),
-				new Sphere(new Point3D(80, 80, -160), 10).setEmmission(new Color(150, 0, 150))// blue
-						.setMaterial(new Material().setkT(0.5).setkD(0.75).setnShininess(30).setkS(1)));
+				new Sphere(new Point3D(10, 75, -150), 7).setEmmission(new Color(70, 0, 0))// cherry
+						.setMaterial(new Material().setkT(1).setkD(0.5).setnShininess(30).setkS(0.5)),
+				// face
+				new Sphere(new Point3D(35, 20, -100), 12).setEmmission(new Color(0, 0, 0)), // red icecream
+				new Sphere(new Point3D(-8, 20, -100), 12).setEmmission(new Color(0, 0, 0)), // blue icecream
+				new Sphere(new Point3D(40, 25, -90), 5).setEmmission(new Color(255, 255, 255)), // red icecream
+				new Sphere(new Point3D(-3, 25, -90), 5).setEmmission(new Color(255, 255, 255)), // blue icecream
+				// mouse
+				new Sphere(new Point3D(10, -27, -100), 10).setEmmission(new Color(50, 0, 0)),
+				new Sphere(new Point3D(10, -20, -100), 10).setEmmission(new Color(255, 140, 190)),
+				// ашийч
+				new Polygon(new Point3D(-80, -15, -150), new Point3D(-110, -25, -150), new Point3D(-110, 65, -150),
+						new Point3D(-80, 75, -150)).setEmmission(new Color(227, 28, 36))
+								.setMaterial(new Material().setkT(0.5).setkR(1).setkR(0.5)), // red
+				new Polygon(new Point3D(-80, -15, -150), new Point3D(-110, -25, -150), new Point3D(-110, -35, -150),
+						new Point3D(-80, -25, -150)).setEmmission(new Color(26, 240, 52))
+								.setMaterial(new Material().setkT(0.5).setkR(1).setkR(0.5)), // green
+				new Polygon(new Point3D(-101, -32, -150), new Point3D(-89, -28, -150), new Point3D(-89, -48, -150),
+						new Point3D(-101, -52, -150)).setEmmission(new Color(202, 165, 38))
+								.setMaterial(new Material().setkT(0.5).setkR(1).setkR(0.5)), // yellow
+
+				// nucleuses
+				new Sphere(new Point3D(-100, -10, -95), 2).setEmmission(new Color(0, 0, 0))
+						.setMaterial(new Material().setkT(0.25).setkR(0.5)),
+				new Sphere(new Point3D(-80, -12, -95), 2).setEmmission(new Color(0, 0, 0))
+						.setMaterial(new Material().setkT(0.25).setkR(0.5)),
+				new Sphere(new Point3D(-87, -3, -95), 2).setEmmission(new Color(0, 0, 0))
+						.setMaterial(new Material().setkT(0.25).setkR(0.5)),
+				new Sphere(new Point3D(-95, 7, -110), 2).setEmmission(new Color(0, 0, 0))
+						.setMaterial(new Material().setkT(0.25).setkR(0.5)),
+				new Sphere(new Point3D(-80, 15, -95), 2).setEmmission(new Color(0, 0, 0))
+						.setMaterial(new Material().setkT(0.25).setkR(0.5)),
+				new Sphere(new Point3D(-90, 20, -95), 2).setEmmission(new Color(0, 0, 0))
+						.setMaterial(new Material().setkT(0.25).setkR(0.5)),
+				new Sphere(new Point3D(-100, 27, -100), 2).setEmmission(new Color(0, 0, 0))
+						.setMaterial(new Material().setkT(0.25).setkR(0.5)),
+				new Sphere(new Point3D(-87, 33, -95), 2).setEmmission(new Color(0, 0, 0))
+						.setMaterial(new Material().setkT(0.25).setkR(0.5)),
+				new Sphere(new Point3D(-95, 42, -95), 2).setEmmission(new Color(0, 0, 0))
+						.setMaterial(new Material().setkT(0.25).setkR(0.5)),
+				new Sphere(new Point3D(-80, 47, -95), 2).setEmmission(new Color(0, 0, 0))
+						.setMaterial(new Material().setkT(0.25).setkR(0.5)),
+				new Sphere(new Point3D(-87, 55, -95), 2).setEmmission(new Color(0, 0, 0))
+						.setMaterial(new Material().setkT(0.25).setkR(0.5)),
+				new Sphere(new Point3D(-98, 56, -95), 2).setEmmission(new Color(0, 0, 0))
+						.setMaterial(new Material().setkT(0.25).setkR(0.5))
+
+//			new Sphere(new Point3D(-140, 0, -150), 10).setEmmission(new Color(150, 0, 150))// blue
+//						.setMaterial(new Material().setkT(0.5).setkD(0.75).setnShininess(30).setkS(1)),
+//				new Sphere(new Point3D(150, 0, -150), 10).setEmmission(new Color(80, 80, 18))// blue
+//						.setMaterial(new Material().setkR(1).setkD(0.75).setnShininess(30).setkS(1)),
+//				new Sphere(new Point3D(-60, 80, -160), 10).setEmmission(new Color(80, 80, 18))// blue
+//						.setMaterial(new Material().setkR(1).setkD(0.75).setnShininess(30).setkS(1)),
+//				new Sphere(new Point3D(80, 80, -160), 10).setEmmission(new Color(150, 0, 150))// blue
+//						.setMaterial(new Material().setkT(0.5).setkD(0.75).setnShininess(30).setkS(1))
+		);
+		// scene.background=new Color(0,0,255);
 		scene.lights.add(new PointLight(new Color(100, 100, 500), new Point3D(-50, -50, 50))//
 				.setkL(0.00001).setkQ(0.00001));
 
