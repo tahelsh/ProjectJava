@@ -119,50 +119,50 @@ public class ReflectionRefractionTests {
 		render.writeToImage();
 	}
 
-	@Test
-	public void ourPicture() {
-		Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-				.setViewPlaneSize(200, 200).setDistance(1000);
-		Geometry triangle1 = new Triangle( //
-				new Point3D(-150, -150, -150), new Point3D(150, -150, -150), new Point3D(75, 75, -150));
-//						.setEmmission(new Color(java.awt.Color.BLUE));
-		Geometry triangle2 = new Triangle( //
-				new Point3D(-150, -150, -150), new Point3D(-70, 70, -50), new Point3D(75, 75, -150));
-//						.setEmmission(new Color(java.awt.Color.BLUE));
-
-		scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.3));
-		scene.geometries.add(
-//				new Polygon(new Point3D(-150, -150, -150), new Point3D(75, 75, -150),
-//						new Point3D(75, 75, 50), new Point3D(-150, -150, 50)) //
-//								.setEmmission(new Color(20, 20, 20)) //
-//								.setMaterial(new Material().setkR(1)).setEmmission(new Color(java.awt.Color.RED)),
-				// triangle1.setMaterial(new
-				 //Material().setkD(0.5).setkS(0.5).setnShininess(300).setkR(0.5)),
-				// triangle2.setMaterial(new
-				// Material().setkD(0.5).setkS(0.5).setnShininess(300).setkR(0.5)),
-				new Sphere(new Point3D(-33, -53, -150), 30).setEmmission(new Color(java.awt.Color.CYAN))
-						.setMaterial(new Material().setkR(0.5).setkD(0.5).setnShininess(30).setkS(0.5)),
-				new Sphere(new Point3D(50, 33, -150), 30).setEmmission(new Color(java.awt.Color.RED))
-						.setMaterial(new Material().setkR(0.5).setkD(0.5).setnShininess(30).setkS(0.5)),
-				new Cylinder(new Ray(new Point3D(50, 33, -150), new Vector(-83,-86,0)), 100, 200)
-						.setEmmission(new Color(java.awt.Color.PINK)),
-				new Polygon(new Point3D(18, 1, 200), new Point3D(18, 65, -500), new Point3D(95, 65, -500),
-						new Point3D(75, 1, 200)).setEmmission(new Color(java.awt.Color.GREEN))
-								.setMaterial(new Material().setkT(0.75)),
-				new Polygon(new Point3D(-62, -102, -500), new Point3D(-62, -20, 100), new Point3D(-2, -20, 100),
-						new Point3D(-2, -102, -500)).setEmmission(new Color(java.awt.Color.BLUE))
-								.setMaterial(new Material().setkT(0.75)));
-		scene.lights.add(new PointLight(new Color(500, 250, 250), new Point3D(10, -10, -130)) //
-				.setkL(0.0001).setkQ(0.000005));
-		ImageWriter imageWriter = new ImageWriter("trilili", 600, 600);
-		Render render = new Render() //
-				.setImageWriter(imageWriter) //
-				.setCamera(camera) //
-				.setRayTracer(new RayTracerBasic(scene));
-
-		render.renderImage();
-		render.writeToImage();
-	}
+//	@Test
+//	public void ourPicture() {
+//		Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+//				.setViewPlaneSize(200, 200).setDistance(1000);
+//		Geometry triangle1 = new Triangle( //
+//				new Point3D(-150, -150, -150), new Point3D(150, -150, -150), new Point3D(75, 75, -150));
+////						.setEmmission(new Color(java.awt.Color.BLUE));
+//		Geometry triangle2 = new Triangle( //
+//				new Point3D(-150, -150, -150), new Point3D(-70, 70, -50), new Point3D(75, 75, -150));
+////						.setEmmission(new Color(java.awt.Color.BLUE));
+//
+//		scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.3));
+//		scene.geometries.add(
+////				new Polygon(new Point3D(-150, -150, -150), new Point3D(75, 75, -150),
+////						new Point3D(75, 75, 50), new Point3D(-150, -150, 50)) //
+////								.setEmmission(new Color(20, 20, 20)) //
+////								.setMaterial(new Material().setkR(1)).setEmmission(new Color(java.awt.Color.RED)),
+//				// triangle1.setMaterial(new
+//				// Material().setkD(0.5).setkS(0.5).setnShininess(300).setkR(0.5)),
+//				// triangle2.setMaterial(new
+//				// Material().setkD(0.5).setkS(0.5).setnShininess(300).setkR(0.5)),
+//				new Sphere(new Point3D(-33, -53, -150), 30).setEmmission(new Color(java.awt.Color.CYAN))
+//						.setMaterial(new Material().setkR(0.5).setkD(0.5).setnShininess(30).setkS(0.5)),
+//				new Sphere(new Point3D(50, 33, -150), 30).setEmmission(new Color(java.awt.Color.RED))
+//						.setMaterial(new Material().setkR(0.5).setkD(0.5).setnShininess(30).setkS(0.5)),
+//				new Cylinder(new Ray(new Point3D(50, 33, -150), new Vector(-83, -86, 0)), 100, 200)
+//						.setEmmission(new Color(java.awt.Color.PINK)),
+//				new Polygon(new Point3D(18, 1, 200), new Point3D(18, 65, -500), new Point3D(95, 65, -500),
+//						new Point3D(75, 1, 200)).setEmmission(new Color(java.awt.Color.GREEN))
+//								.setMaterial(new Material().setkT(0.75)),
+//				new Polygon(new Point3D(-62, -102, -500), new Point3D(-62, -20, 100), new Point3D(-2, -20, 100),
+//						new Point3D(-2, -102, -500)).setEmmission(new Color(java.awt.Color.BLUE))
+//								.setMaterial(new Material().setkT(0.75)));
+//		scene.lights.add(new PointLight(new Color(500, 250, 250), new Point3D(10, -10, -130)) //
+//				.setkL(0.0001).setkQ(0.000005));
+//		ImageWriter imageWriter = new ImageWriter("trilili", 600, 600);
+//		Render render = new Render() //
+//				.setImageWriter(imageWriter) //
+//				.setCamera(camera) //
+//				.setRayTracer(new RayTracerBasic(scene));
+//
+//		render.renderImage();
+//		render.writeToImage();
+//	}
 
 	@Test
 	public void ourPicture2() {
@@ -179,19 +179,27 @@ public class ReflectionRefractionTests {
 		scene.geometries.add(
 				new Polygon(new Point3D(-150, -160, -10), new Point3D(-150, 90, -400), new Point3D(165, 90, -400),
 						new Point3D(165, -160, -10)).setMaterial(new Material().setkR(1).setkD(0.5))
-				.setEmmission(new Color(0,0,0)),
-				//triangle1.setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(300).setkR(0.5)),
-				 //triangle2.setMaterial(new
-				// Material().setkR(1)),
+								.setEmmission(new Color(0, 0, 0)),
+				// triangle1.setMaterial(new
+				// Material().setkD(0.5).setkS(0.5).setnShininess(300).setkR(0.5)),
+				//triangle2.setMaterial(new Material().setkR(1)),
 				new Triangle(new Point3D(50, -10, -150), new Point3D(-30, -10, -150), new Point3D(10, -70, -150))
-						.setEmmission(new Color(200,70,50))//orange
+						.setEmmission(new Color(200, 70, 50))// orange
 						.setMaterial(new Material().setkR(1).setkD(1).setnShininess(300).setkS(0.5)),
-				new Sphere(new Point3D(-8, 10, -150), 25).setEmmission(new Color(0,30,60))//blue
+				new Sphere(new Point3D(-8, 10, -150), 25).setEmmission(new Color(0, 30, 60))// blue icecream
 						.setMaterial(new Material().setkT(1).setkD(0.5).setnShininess(30).setkS(0.5)),
-				new Sphere(new Point3D(35, 10, -150), 25).setEmmission(new Color(50,0,0))//red
+				new Sphere(new Point3D(35, 10, -150), 25).setEmmission(new Color(50, 0, 0))// red icecream
 						.setMaterial(new Material().setkR(1).setkD(0.5).setnShininess(30).setkS(0.5)),
-				new Sphere(new Point3D(10, 40, -150), 25).setEmmission(new Color(0,50,0))//green
-						.setMaterial(new Material().setkT(1).setkD(0.5).setnShininess(30).setkS(0.5)));
+				new Sphere(new Point3D(10, 40, -150), 25).setEmmission(new Color(0, 50, 0))// green icecream
+						.setMaterial(new Material().setkT(1).setkD(0.5).setnShininess(30).setkS(0.5)),
+				new Sphere(new Point3D(-140, 0, -150), 10).setEmmission(new Color(150, 0, 150))// blue
+						.setMaterial(new Material().setkT(0.5).setkD(0.75).setnShininess(30).setkS(1)),
+				new Sphere(new Point3D(150, 0, -150), 10).setEmmission(new Color(80, 80, 18))// blue
+						.setMaterial(new Material().setkR(1).setkD(0.75).setnShininess(30).setkS(1)),
+				new Sphere(new Point3D(-60, 80, -160), 10).setEmmission(new Color(80, 80, 18))// blue
+						.setMaterial(new Material().setkR(1).setkD(0.75).setnShininess(30).setkS(1)),
+				new Sphere(new Point3D(80, 80, -160), 10).setEmmission(new Color(150, 0, 150))// blue
+						.setMaterial(new Material().setkT(0.5).setkD(0.75).setnShininess(30).setkS(1)));
 		scene.lights.add(new PointLight(new Color(100, 100, 500), new Point3D(-50, -50, 50))//
 				.setkL(0.00001).setkQ(0.00001));
 
