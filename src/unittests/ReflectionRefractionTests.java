@@ -119,53 +119,11 @@ public class ReflectionRefractionTests {
 		render.writeToImage();
 	}
 
-//	@Test
-//	public void ourPicture() {
-//		Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-//				.setViewPlaneSize(200, 200).setDistance(1000);
-//		Geometry triangle1 = new Triangle( //
-//				new Point3D(-150, -150, -150), new Point3D(150, -150, -150), new Point3D(75, 75, -150));
-////						.setEmmission(new Color(java.awt.Color.BLUE));
-//		Geometry triangle2 = new Triangle( //
-//				new Point3D(-150, -150, -150), new Point3D(-70, 70, -50), new Point3D(75, 75, -150));
-////						.setEmmission(new Color(java.awt.Color.BLUE));
-//
-//		scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.3));
-//		scene.geometries.add(
-////				new Polygon(new Point3D(-150, -150, -150), new Point3D(75, 75, -150),
-////						new Point3D(75, 75, 50), new Point3D(-150, -150, 50)) //
-////								.setEmmission(new Color(20, 20, 20)) //
-////								.setMaterial(new Material().setkR(1)).setEmmission(new Color(java.awt.Color.RED)),
-//				// triangle1.setMaterial(new
-//				// Material().setkD(0.5).setkS(0.5).setnShininess(300).setkR(0.5)),
-//				// triangle2.setMaterial(new
-//				// Material().setkD(0.5).setkS(0.5).setnShininess(300).setkR(0.5)),
-//				new Sphere(new Point3D(-33, -53, -150), 30).setEmmission(new Color(java.awt.Color.CYAN))
-//						.setMaterial(new Material().setkR(0.5).setkD(0.5).setnShininess(30).setkS(0.5)),
-//				new Sphere(new Point3D(50, 33, -150), 30).setEmmission(new Color(java.awt.Color.RED))
-//						.setMaterial(new Material().setkR(0.5).setkD(0.5).setnShininess(30).setkS(0.5)),
-//				new Cylinder(new Ray(new Point3D(50, 33, -150), new Vector(-83, -86, 0)), 100, 200)
-//						.setEmmission(new Color(java.awt.Color.PINK)),
-//				new Polygon(new Point3D(18, 1, 200), new Point3D(18, 65, -500), new Point3D(95, 65, -500),
-//						new Point3D(75, 1, 200)).setEmmission(new Color(java.awt.Color.GREEN))
-//								.setMaterial(new Material().setkT(0.75)),
-//				new Polygon(new Point3D(-62, -102, -500), new Point3D(-62, -20, 100), new Point3D(-2, -20, 100),
-//						new Point3D(-2, -102, -500)).setEmmission(new Color(java.awt.Color.BLUE))
-//								.setMaterial(new Material().setkT(0.75)));
-//		scene.lights.add(new PointLight(new Color(500, 250, 250), new Point3D(10, -10, -130)) //
-//				.setkL(0.0001).setkQ(0.000005));
-//		ImageWriter imageWriter = new ImageWriter("trilili", 600, 600);
-//		Render render = new Render() //
-//				.setImageWriter(imageWriter) //
-//				.setCamera(camera) //
-//				.setRayTracer(new RayTracerBasic(scene));
-//
-//		render.renderImage();
-//		render.writeToImage();
-//	}
-
+   /**
+    * test of create a picture with all the effects
+    */
 	@Test
-	public void ourPicture2() {
+	public void allEffectsPicture() {
 		Camera camera = new Camera(new Point3D(5, -10, 1000), new Vector(-0.035, 0, -1).normalized(),
 				new Vector(0, 1, 0)) //
 						.setViewPlaneSize(200, 200).setDistance(1000);
@@ -195,7 +153,7 @@ public class ReflectionRefractionTests {
 				// mouse
 				new Sphere(new Point3D(10, -27, -100), 10).setEmmission(new Color(50, 0, 0)),
 				new Sphere(new Point3D(10, -20, -100), 10).setEmmission(new Color(255, 140, 190)),
-				// ашийч
+				// ice cream bar
 				new Polygon(new Point3D(-80, -15, -150), new Point3D(-110, -25, -150), new Point3D(-110, 65, -150),
 						new Point3D(-80, 75, -150)).setEmmission(new Color(227, 28, 36))
 								.setMaterial(new Material().setkT(0.5).setkR(1).setkR(0.5)), // red
@@ -231,21 +189,12 @@ public class ReflectionRefractionTests {
 						.setMaterial(new Material().setkT(0.25).setkR(0.5)),
 				new Sphere(new Point3D(-98, 56, -95), 2).setEmmission(new Color(0, 0, 0))
 						.setMaterial(new Material().setkT(0.25).setkR(0.5))
-
-//			new Sphere(new Point3D(-140, 0, -150), 10).setEmmission(new Color(150, 0, 150))// blue
-//						.setMaterial(new Material().setkT(0.5).setkD(0.75).setnShininess(30).setkS(1)),
-//				new Sphere(new Point3D(150, 0, -150), 10).setEmmission(new Color(80, 80, 18))// blue
-//						.setMaterial(new Material().setkR(1).setkD(0.75).setnShininess(30).setkS(1)),
-//				new Sphere(new Point3D(-60, 80, -160), 10).setEmmission(new Color(80, 80, 18))// blue
-//						.setMaterial(new Material().setkR(1).setkD(0.75).setnShininess(30).setkS(1)),
-//				new Sphere(new Point3D(80, 80, -160), 10).setEmmission(new Color(150, 0, 150))// blue
-//						.setMaterial(new Material().setkT(0.5).setkD(0.75).setnShininess(30).setkS(1))
 		);
 		// scene.background=new Color(0,0,255);
 		scene.lights.add(new PointLight(new Color(100, 100, 500), new Point3D(-50, -50, 50))//
 				.setkL(0.00001).setkQ(0.00001));
 
-		ImageWriter imageWriter = new ImageWriter("trilili2", 600, 600);
+		ImageWriter imageWriter = new ImageWriter("allEffectsPicture", 600, 600);
 		Render render = new Render() //
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //

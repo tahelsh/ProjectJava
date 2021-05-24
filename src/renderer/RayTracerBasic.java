@@ -158,14 +158,6 @@ public class RayTracerBasic extends RayTracerBase {
 	 * @param nShininess shininess level
 	 * @param ip         light intensity at the point
 	 * @return specular component light effect at the point
-	 * @author Dan Zilberstein
-	 *         <p>
-	 *         Finally, the Phong model has a provision for a highlight, or
-	 *         specular, component, which reflects light in a shiny way. This is
-	 *         defined by [rs,gs,bs](-V.R)^p, where R is the mirror reflection
-	 *         direction vector we discussed in class (and also used for ray
-	 *         tracing), and where p is a specular power. The higher the value of p,
-	 *         the shinier the surface.
 	 */
 	private Color calcSpecular(double ks, Vector l, Vector n, double nl, Vector v, int nShininess, Color ip) {
 		double p = nShininess;
@@ -185,14 +177,6 @@ public class RayTracerBasic extends RayTracerBase {
 	 * @param nl dot-product n*l
 	 * @param ip light intensity at the point
 	 * @return diffusive component of light reflection
-	 * @author Dan Zilberstein
-	 *         <p>
-	 *         The diffuse component is that dot product n•L that we discussed in
-	 *         class. It approximates light, originally from light source L,
-	 *         reflecting from a surface which is diffuse, or non-glossy. One
-	 *         example of a non-glossy surface is paper. In general, you'll also
-	 *         want this to have a non-gray color value, so this term would in
-	 *         general be a color defined as: [rd,gd,bd](n•L)
 	 */
 	private Color calcDiffusive(double kd, double nl, Color ip) {
 		if (nl < 0)
@@ -206,13 +190,10 @@ public class RayTracerBasic extends RayTracerBase {
 	 * @param l  vector l - light direction
 	 * @param n  normal
 	 * @param gp geo point
-	 * @return
+	 * @return if the point is unshaded or not
 	 */
 	private boolean unshaded(Vector l, Vector n, GeoPoint gp, LightSource lightSource) {
 		Vector lightDirection = l.scale(-1); // from point to light source
-//		Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);// where we need to move the point
-//		Point3D point = gp.point.add(delta);// moving the point
-//		Ray lightRay = new Ray(point, lightDirection);// the new ray after the moving
 		Ray lightRay = new Ray(gp.point, lightDirection, n);
 		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
 		if (intersections == null)
@@ -228,11 +209,11 @@ public class RayTracerBasic extends RayTracerBase {
 	}
 
 	/**
-	 * 
+	 * calculate partial shading
 	 * @param l  vector l - light direction
 	 * @param n  normal
 	 * @param gp geo point
-	 * @return
+	 * @return if there is partial shading or not
 	 */
 	private double transparency(Vector l, Vector n, GeoPoint gp, LightSource lightSource) {
 		Vector lightDirection = l.scale(-1); // from point to light source
