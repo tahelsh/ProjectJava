@@ -113,6 +113,14 @@ public double getX()
 {
 	return x.coord;
 }
+/**
+ * 
+ * @return y double
+ */
+public double getY()
+{
+	return y.coord;
+}
 
 }
 

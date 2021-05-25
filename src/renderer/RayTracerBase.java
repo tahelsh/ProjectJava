@@ -28,6 +28,6 @@ public abstract class RayTracerBase {
 	 * @param ray a ray
 	 * @return the color of the closest point to the ray
 	 */
-	public abstract Color traceRay(Ray ray); 
+	public abstract Color traceRay(Ray ray, int numberOfRays); 
 
 }

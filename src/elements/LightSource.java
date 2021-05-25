@@ -36,5 +36,8 @@ public interface LightSource {
 	 * @return
 	 */
 	double getDistance(Point3D point);
+	
+	double getRadius();
+	
 
 }
