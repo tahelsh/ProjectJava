@@ -56,43 +56,18 @@ public class Render {
 		this.rayTracer = rayTracer;
 		return this;
 	}
-
+	
 //	/**
 //	 * render image-paint the pixels
 //	 * 
 //	 * @throws MissingResourceException
 //	 */
-//	public void renderImage() throws MissingResourceException {
-//		//if (scene == null)
-//		//	throw new MissingResourceException("The value of scene is null", "Render", null);
-//		if (camera == null)
-//			throw new MissingResourceException("The value of camera is null", "Render", null);
-//		if (imageWriter == null)
-//			throw new MissingResourceException("The value of imageWriter is null", "Render", null);
-//		if (rayTracer == null)
-//			throw new MissingResourceException("The value of rayTracer is null", "Render", null);
-//
-//		int Nx = imageWriter.getNx();// Nx= how many columns
-//		int Ny = imageWriter.getNy();// Ny= how many rows
-//		for (int i = 0; i < Ny; i++) {
-//			for (int j = 0; j < Nx; j++) {
-//				Ray ray = camera.constructRayThroughPixel(Nx, Ny, j, i); // create the ray from camera to view plane
-//				imageWriter.writePixel(j, i, rayTracer.traceRay(ray)); // write this pixels
-//			}
-//		}
+//	public void renderImage() throws MissingResourceException
+//	{
+//		renderImage(1);
 //	}
 	
-	/**
-	 * render image-paint the pixels
-	 * 
-	 * @throws MissingResourceException
-	 */
-	public void renderImage() throws MissingResourceException
-	{
-		renderImage(1);
-	}
-	
-	public void renderImage(int numberOfRays) throws MissingResourceException {
+	public void renderImage(/*int numberOfRays*/) throws MissingResourceException {
 		//if (scene == null)
 		//	throw new MissingResourceException("The value of scene is null", "Render", null);
 		if (camera == null)
@@ -107,7 +82,7 @@ public class Render {
 		for (int i = 0; i < Ny; i++) {
 			for (int j = 0; j < Nx; j++) {
 				Ray ray = camera.constructRayThroughPixel(Nx, Ny, j, i); // create the ray from camera to view plane
-				imageWriter.writePixel(j, i, rayTracer.traceRay(ray, numberOfRays)); // write this pixels
+				imageWriter.writePixel(j, i, rayTracer.traceRay(ray/*, numberOfRays*/)); // write this pixels
 			}
 		}
 	}

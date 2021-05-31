@@ -21,11 +21,21 @@ public class PointLight extends Light implements LightSource {
 	private double kC = 1;
 
 	/* ********* Constructors ***********/
+	/**
+	 * c-Tor that gets intensity light and position point
+	 * @param intensity intensity color
+	 * @param position position point
+	 */
 	public PointLight(Color intensity, Point3D position) {
 		super(intensity);
 		this.position = position;
 	}
-
+/**
+ * c-Tor that gets intensity light, position point and radius value
+ * @param intensity intensity color
+ * @param position position point
+ * @param radius radius value
+ */
 	public PointLight(Color intensity, Point3D position, double radius) {
 		super(intensity, radius);
 		this.position = position;

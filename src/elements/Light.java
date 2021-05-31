@@ -14,7 +14,7 @@ import primitives.Color;
 abstract class Light {
 
 	private Color intensity;
-	private double radius=0;
+	private double radius=0;//the radius of the light
 
 	/**
 	 * C-TOR that gets intensity color

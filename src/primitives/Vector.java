@@ -173,4 +173,22 @@ public class Vector {
 		Vector other = (Vector) obj;
 		return head.equals(other.head);
 	}
+	
+	/**
+	 * calculate the orthogonal vector
+	 * @return orthogonal vector
+	 */
+	public Vector OrthogonalVector()
+	{
+		if(!Util.isZero(head.x.coord)||!Util.isZero(head.y.coord))
+			return new Vector(-head.y.coord,head.x.coord,0);
+		else
+		{
+			if(Util.isZero(head.x.coord))
+				return new Vector(0,-head.z.coord,head.y.coord);
+			else//y==0
+				return new Vector(-head.z.coord,0,head.x.coord);
+		}
+	}
+	
 }

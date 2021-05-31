@@ -18,10 +18,10 @@ public class SpotLight extends PointLight {
 
 	/* ********* Constructors ***********/
 	/**
-	 * 
-	 * @param intensity
-	 * @param position
-	 * @param direction
+	 * C-TOR that gets intensity light, position point and direction vector
+	 * @param intensity intensity color
+	 * @param position position point
+	 * @param direction direction vector
 	 */
 	public SpotLight(Color intensity, Point3D position, Vector direction) {
 		super(intensity, position);
@@ -29,11 +29,11 @@ public class SpotLight extends PointLight {
 	}
 
 	/**
-	 * 
-	 * @param intensity
-	 * @param position
-	 * @param direction
-	 * @param radius
+	 * C-TOR that gets intensity light, position point, direction vector and radius value
+	 * @param intensity intensity color
+	 * @param position position point
+	 * @param direction direction vector
+	 * @param radius radius value
 	 */
 	public SpotLight(Color intensity, Point3D position, Vector direction, double radius) {
 		super(intensity, position, radius);
