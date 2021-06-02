@@ -102,9 +102,9 @@ public class softShadowsTest {
 		Render render = new Render() //
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
-				.setRayTracer(new RayTracerBasic(scene).setNumberOfRays(55));
+				.setRayTracer(new RayTracerBasic(scene).setNumberOfRays(100));
 
-		render.renderImage(/*55*/);
+		render.renderImage(/*100*/);
 		render.writeToImage();
 	}
 	
