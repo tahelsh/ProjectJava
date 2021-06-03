@@ -19,8 +19,12 @@ import renderer.ImageWriter;
 import renderer.RayTracerBasic;
 import renderer.Render;
 import scene.Scene;
-
-public class softShadowsTest {
+/**
+ * tests for soft shadow- mini project 1
+ * @author Tahel Sharon & Ayala Israeli
+ *
+ */
+public class SoftShadowTest {
 	private Scene scene = new Scene("Test scene");
 	
 	/**
