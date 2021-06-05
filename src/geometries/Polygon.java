@@ -42,6 +42,7 @@ public class Polygon extends Geometry {
 	 *                                  </ul>
 	 */
 	public Polygon(Point3D... vertices) throws IllegalArgumentException {
+		super(null);
 		if (vertices.length < 3)
 			throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
 		this.vertices = List.of(vertices);
@@ -79,6 +80,39 @@ public class Polygon extends Geometry {
 			if (positive != (edge1.crossProduct(edge2).dotProduct(n) > 0))
 				throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
 		}
+		this.setBox(createBox());// build the box
+	}
+
+	/**
+	 * Create Box according to the vertices
+	 * 
+	 * @return Box
+	 */
+	private Box createBox() {
+
+		double x1 = Double.NEGATIVE_INFINITY;
+		double x0 = Double.POSITIVE_INFINITY;
+		double y1 = Double.NEGATIVE_INFINITY;
+		double y0 = Double.POSITIVE_INFINITY;
+		double z1 = Double.NEGATIVE_INFINITY;
+		double z0 = Double.POSITIVE_INFINITY;
+		// Adjust the size of the box according to the vertices
+		for (Point3D v : vertices) {
+			if (v.getX() < x0)
+				x0 = v.getX();
+			if (v.getX() > x1)
+				x1 = v.getX();
+			if (v.getY() < y0)
+				y0 = v.getY();
+			if (v.getY() > y1)
+				y1 = v.getY();
+			if (v.getZ() < z0)
+				z0 = v.getZ();
+			if (v.getZ() > z1)
+				z1 = v.getZ();
+		}
+		return new Box(x0, x1, y0, y1, z0, z1);
+
 	}
 
 	@Override
@@ -86,10 +120,12 @@ public class Polygon extends Geometry {
 		return plane.getNormal();
 	}
 
-
-
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
+		if (this.getBox().IntersectionBox(ray) == false)
+			return null;
+//		if (!IsIntersectionBox(ray))
+//			return null;
 		List<GeoPoint> intersections = plane.findGeoIntersections(ray);
 		if (intersections == null)
 			return null;

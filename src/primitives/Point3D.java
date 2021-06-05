@@ -117,9 +117,15 @@ public double getX()
  * 
  * @return y double
  */
-public double getY()
-{
+public double getY() {
 	return y.coord;
+}
+/**
+ * 
+ * @return z double
+ */
+public double getZ() {
+	return z.coord;
 }
 
 }

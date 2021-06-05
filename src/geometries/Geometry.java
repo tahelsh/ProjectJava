@@ -4,6 +4,7 @@ import primitives.Vector;
 import primitives.Color;
 import primitives.Material;
 import primitives.Point3D;
+import primitives.Ray;
 
 /**
  * interface of Geometry
@@ -15,7 +16,12 @@ import primitives.Point3D;
 public abstract class Geometry implements Intersectable {
 	private Color emmission = Color.BLACK;
 	private Material material=new Material();
+	private Box box=null;
 
+	public Geometry(Box box)
+	{
+		this.box=box;
+	}
 	/**
 	 * calculate a vector normal of a geometry
 	 * 
@@ -62,4 +68,29 @@ public abstract class Geometry implements Intersectable {
 		this.material = material;
 		return this;
 	}
+	/**
+	 * get box
+	 * @return the box
+	 */
+	public Box getBox() {
+		return box;
+	}
+
+	/**
+	 * set box
+	 * @param box
+	 * @return the geometry
+	 */
+	public Geometry setBox(Box box) {
+		this.box = box;
+		return this;
+	}
+//	@Override
+//	public boolean IsIntersectionBox(Ray ray)
+//	{
+//		if(this.box==null)
+//			return true;
+//		else
+//			return box.IntersectionBox(ray);			
+//	}
 }

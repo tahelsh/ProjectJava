@@ -32,7 +32,7 @@ public class Tube extends Geometry {
 	 * @param radius
 	 */
 	public Tube(Ray axisRay, double radius) {
-		super();
+		super(null);
 		this.axisRay = axisRay;
 		this.radius = radius;
 	}
