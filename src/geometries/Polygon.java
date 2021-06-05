@@ -46,6 +46,7 @@ public class Polygon extends Geometry {
 		if (vertices.length < 3)
 			throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
 		this.vertices = List.of(vertices);
+		this.setBox(createBox());// build the box
 		// Generate the plane according to the first three vertices and associate the
 		// polygon with this plane.
 		// The plane holds the invariant normal (orthogonal unit) vector to the polygon
@@ -80,7 +81,7 @@ public class Polygon extends Geometry {
 			if (positive != (edge1.crossProduct(edge2).dotProduct(n) > 0))
 				throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
 		}
-		this.setBox(createBox());// build the box
+		
 	}
 
 	/**

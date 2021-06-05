@@ -33,6 +33,8 @@ public class Triangle extends Polygon {
 
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
+		if (this.getBox().IntersectionBox(ray) == false)
+			return null;
 		List<GeoPoint> intersections = plane.findGeoIntersections(ray);
 		if (intersections == null)
 			return null;
