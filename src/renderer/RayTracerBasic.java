@@ -251,7 +251,7 @@ public class RayTracerBasic extends RayTracerBase {
 				sum += ktr;
 			} else// no intersections
 			{
-				sum += 1;
+				sum += 1;//there is no shadow
 			}
 		}
 		return sum / rays.size();// Average of Coefficients
@@ -321,20 +321,20 @@ public class RayTracerBasic extends RayTracerBase {
 		Vector lightDirection = l.scale(-1); // from point to light source
 		Ray lightRay = new Ray(geopoint.point, lightDirection, n);
 		List<Ray> beam = new LinkedList<>();
-		beam.add(lightRay);
+		beam.add(lightRay);//הקרן הראשית שעד עכשיו היה לנו קרן אחת
 		if (light.getRadius() == 0)
 			return beam;
 		Point3D p0 = lightRay.getP0();
 		Vector v = lightRay.getDir();// האור של הוקטור
 		//Vector vx = (new Vector(-v.getHead().getY(), v.getHead().getX(), 0)).normalized();// (-y,x,0)
-		Vector vx=v.OrthogonalVector();
+		Vector vx=v.OrthogonalVector();//מוצא ווקטור אנך
 		Vector vy = (v.crossProduct(vx)).normalized();// v ו vx מאונך ווקטור
 		double r = light.getRadius();
 		Point3D pC = lightRay.getPoint(light.getDistance(p0));
 		for (int i = 0; i < numberOfRays - 1; i++) {
 			// create random polar system coordinates of a point in circle of radius r
 			double cosTeta = ThreadLocalRandom.current().nextDouble(-1, 1);
-			double sinTeta = Math.sqrt(1 - cosTeta * cosTeta);
+			double sinTeta = Math.sqrt(1 - cosTeta * cosTeta);//1-cos^2
 			double d = ThreadLocalRandom.current().nextDouble(0, r);
 			// Convert polar coordinates to Cartesian ones
 			double x = d * cosTeta;
@@ -348,7 +348,7 @@ public class RayTracerBasic extends RayTracerBase {
 				point = point.add(vy.scale(y));
 			beam.add(new Ray(p0, point.subtract(p0))); // normalized inside Ray ctor
 		}
-		return beam;
+		return beam;//קרניים 50 של הרשימה
 
 	}
 
