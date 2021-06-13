@@ -6,7 +6,7 @@ import geometries.*;
 import primitives.*;
 
 /**
- * @author Tahel Sharon and Ayala Israeli
+ * @author Tahel Sharon and Ayala Israelii
  */
 public class Point {
 	private Geometry geometry;
