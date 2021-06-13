@@ -116,4 +116,6 @@ public class Sphere extends Geometry {
 		else
 			return List.of(new GeoPoint(this, ray.getPoint(t2)));
 	}
+	@Override
+	public Point3D getPositionPoint() {return center;}
 }

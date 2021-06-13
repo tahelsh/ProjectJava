@@ -115,4 +115,6 @@ public class Plane extends Geometry {
 		}
 
 	}
+	@Override
+    public Point3D getPositionPoint() {return q0;}
 }

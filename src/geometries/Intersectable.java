@@ -184,11 +184,6 @@ public interface Intersectable {
 		List<GeoPoint> geoList = findGeoIntersections(ray);
 		return geoList == null ? null : geoList.stream().map(gp -> gp.point).collect(Collectors.toList());
 	}
-	// List<Point3D> findIntersections(Ray ray); //{
-	// var geoList = findGeoIntersections(ray);
-	// return geoList == null ? null: geoList.stream().map(gp ->
-	// gp.point).collect(Collectors.toList());
-	// }
 
 	/**
 	 * function that finds intersections geo points
@@ -197,6 +192,6 @@ public interface Intersectable {
 	 * @return list of all intersections geo points
 	 */
 	public List<GeoPoint> findGeoIntersections(Ray r);
-	// public boolean IsIntersectionBox(Ray ray);
+	public Box getBox();
 
 }

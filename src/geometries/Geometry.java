@@ -29,6 +29,11 @@ public abstract class Geometry implements Intersectable {
 	 * @return Vector normal for point
 	 */
 	public abstract Vector getNormal(Point3D p);
+	/**
+	 * Returns point on the geometry - for Bounding Volume Hierarchy
+	 * @return Point3D
+	 */
+	public abstract Point3D getPositionPoint();
 	
 	
 	// ***************** Getters/Setters ********************** //
@@ -85,6 +90,7 @@ public abstract class Geometry implements Intersectable {
 		this.box = box;
 		return this;
 	}
+	
 //	@Override
 //	public boolean IsIntersectionBox(Ray ray)
 //	{

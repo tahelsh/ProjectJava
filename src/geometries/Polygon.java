@@ -156,4 +156,6 @@ public class Polygon extends Geometry {
 		}
 		return intersections;
 	}
+	@Override
+	public Point3D getPositionPoint() {return vertices.get(0);}
 }
