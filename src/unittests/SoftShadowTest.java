@@ -99,7 +99,7 @@ public class SoftShadowTest {
 				new Sphere(new Point3D(-98, 56, -95), 2).setEmmission(new Color(0, 0, 0))
 						.setMaterial(new Material().setkT(0.25).setkR(0.5))
 		);
-		// scene.background=new Color(0,0,255);
+		// scene.background=new Color(0,0,255);;
 		scene.lights.add(new PointLight(new Color(100, 100, 500), new Point3D(-50, -50, 50),5)//
 				.setkL(0.00001).setkQ(0.00001));
 
