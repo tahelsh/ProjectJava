@@ -7,6 +7,7 @@ import org.junit.Test;
 import elements.AmbientLight;
 import elements.Camera;
 import elements.PointLight;
+import elements.SpotLight;
 //import elements.SpotLight;
 import geometries.Polygon;
 import geometries.Sphere;
@@ -32,7 +33,7 @@ public class SoftShadowTest {
 	 */
 	@Test
 	public void PictureWithSoftShadows() {
-		Camera camera = new Camera(new Point3D(5, -10, 1000), new Vector(-0.035, 0, -1).normalized(),
+		Camera camera = new Camera(new                    Point3D(5, -10, 1000), new Vector(-0.035, 0, -1).normalized(),
 				new Vector(0, 1, 0)) //
 						.setViewPlaneSize(200, 200).setDistance(1000);
 		scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.3));
