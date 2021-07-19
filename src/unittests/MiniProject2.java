@@ -17,12 +17,17 @@ import renderer.RayTracerBasic;
 import renderer.Render;
 import scene.Scene;
 
+/**
+ * Tests for BVH 
+ * @author Tahel Sharon and Ayala Israeli
+ *
+ */
 public class MiniProject2 {
 	private Scene scene = new Scene("Test scene");
 
 	// part 1
 	@Test
-	public void PictureShlav1() {
+	public void PicturePart1() {
 		Camera camera = new Camera(new Point3D(5, -10, 1000), new Vector(-0.035, 0, -1).normalized(),
 				new Vector(0, 1, 0)) //
 						.setViewPlaneSize(200, 200).setDistance(1000);
@@ -92,18 +97,18 @@ public class MiniProject2 {
 				.setkL(0.00001).setkQ(0.00001));
 
 		ImageWriter imageWriter = new ImageWriter("mini_part1", 600, 600);
-		Render render = new Render() //
-				.setImageWriter(imageWriter) //
-				.setCamera(camera) //
+		Render render = new Render() 
+				.setImageWriter(imageWriter) 
+				.setCamera(camera) 
 				.setRayTracer(new RayTracerBasic(scene).setNumberOfRays(100));
 
-		render.renderImage(/* 100 */);
+		render.renderImage();
 		render.writeToImage();
 	}
 
 	// part 2
 	@Test
-	public void PictureShlav2() {
+	public void PicturePart2() {
 		Camera camera = new Camera(new Point3D(5, -10, 1000), new Vector(-0.035, 0, -1).normalized(),
 				new Vector(0, 1, 0)) //
 						.setViewPlaneSize(200, 200).setDistance(1000);
@@ -194,14 +199,13 @@ public class MiniProject2 {
 				new Point3D(165, 90, -400), new Point3D(165, -160, -10))
 						.setMaterial(new Material().setkR(0.3).setkT(0.25).setkD(0.5)).setEmmission(new Color(0, 0, 0)),
 				geo1, geo2);//ומישור הגלידה כל הארטיק כל
-		// scene.background=new Color(0,0,255);
 		scene.lights.add(new PointLight(new Color(100, 100, 500), new Point3D(-50, -50, 50), 5)//
 				.setkL(0.00001).setkQ(0.00001));
 
 		ImageWriter imageWriter = new ImageWriter("mini_part2", 600, 600);
-		Render render = new Render() //
-				.setImageWriter(imageWriter) //
-				.setCamera(camera) //
+		Render render = new Render() 
+				.setImageWriter(imageWriter) 
+				.setCamera(camera) 
 				.setRayTracer(new RayTracerBasic(scene).setNumberOfRays(100));
 
 		render.renderImage();
@@ -210,7 +214,7 @@ public class MiniProject2 {
 
 	// part 3
 	@Test
-	public void PictureShlav3() {
+	public void PicturePart3() {
 		Camera camera = new Camera(new Point3D(5, -10, 1000), new Vector(-0.035, 0, -1).normalized(),
 				new Vector(0, 1, 0)) //
 						.setViewPlaneSize(200, 200).setDistance(1000);
@@ -282,9 +286,9 @@ public class MiniProject2 {
 		scene.lights.add(new PointLight(new Color(100, 100, 500), new Point3D(-50, -50, 50), 5)//
 				.setkL(0.00001).setkQ(0.00001));
 		ImageWriter imageWriter = new ImageWriter("miniBVH", 600, 600);
-		Render render = new Render() //
-				.setImageWriter(imageWriter) //
-				.setCamera(camera) //
+		Render render = new Render() 
+				.setImageWriter(imageWriter) 
+				.setCamera(camera) 
 				.setRayTracer(new RayTracerBasic(scene).setNumberOfRays(100));
 
 		render.renderImage();
