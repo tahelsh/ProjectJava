@@ -3,6 +3,7 @@ package geometries;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import geometries.Intersectable.Box;
 import primitives.*;
 
 /**
@@ -11,7 +12,19 @@ import primitives.*;
  * @author Tahel Sharon & Ayala Israeli
  *
  */
-public interface Intersectable {
+public abstract class Intersectable {
+
+	protected Box box=null;//a box- for BVH
+	
+	/**
+	 * C-TOR that gets a box
+	 * @param box a box
+	 */
+	public Intersectable(Box box)
+	{
+		this.box=box;
+	}
+	
 	/**
 	 * Class of GeoPoint - contain geometry and point
 	 * 
@@ -51,7 +64,11 @@ public interface Intersectable {
 			return "GP{" + "G=" + geometry + ", P=" + point + '}';
 		}
 	}
-
+    /**
+     * Class of Box for BVH - contains 6 double values of x,y,z minimum and maximum
+     * @author Tahel Sharon & Ayala Israeli
+     *
+     */
 	public static class Box {// for MP2
 
 		protected final double x0;// x minimum
@@ -66,12 +83,12 @@ public interface Intersectable {
 		/**
 		 * Constructor, build a box around among of shapes
 		 * 
-		 * @param x0
-		 * @param x1
-		 * @param y0
-		 * @param y1
-		 * @param z0
-		 * @param z1
+		 * @param x0 x minimum
+		 * @param x1 x max
+		 * @param y0 y minimum
+		 * @param y1 y max
+		 * @param z0 z minimum
+		 * @param z1 z max
 		 */
 		public Box(double x0, double x1, double y0, double y1, double z0, double z1) {
 			super();
@@ -85,42 +102,48 @@ public interface Intersectable {
 
 		// Getters
 		/**
-		 * @return the x0
+		 * Get x0
+		 * @return x0 value
 		 */
 		public double getX0() {
 			return x0;
 		}
 
 		/**
-		 * @return the x1
+		 * Get x1
+		 * @return x1 value
 		 */
 		public double getX1() {
 			return x1;
 		}
 
 		/**
-		 * @return the y0
+		 * Get y0
+		 * @return y0 value
 		 */
 		public double getY0() {
 			return y0;
 		}
 
 		/**
-		 * @return the y1
+		 * Get y1
+		 * @return y1 value
 		 */
 		public double getY1() {
 			return y1;
 		}
 
 		/**
-		 * @return the z0
+		 * Get z0
+		 * @return z0 value
 		 */
 		public double getZ0() {
 			return z0;
 		}
 
 		/**
-		 * @return the z1
+		 * Get z1
+		 * @return z1 value
 		 */
 		public double getZ1() {
 			return z1;
@@ -133,9 +156,7 @@ public interface Intersectable {
 		 * @return True/False
 		 */
 		public boolean IntersectionBox(Ray r) {
-			// return false;
-//			if(this==null)
-//				return true;
+
 			double txmin = (x0 - r.getP0().getX()) / r.getDir().getHead().getX();
 			double txmax = (x1 - r.getP0().getX()) / r.getDir().getHead().getX();
 			if (txmin > txmax) {
@@ -173,6 +194,27 @@ public interface Intersectable {
 		}
 
 	}
+	
+	//*************Getters and Setters**************//
+		/**
+		 * Get box
+		 * @return the box
+		 */
+		public Box getBox() {
+			return box;
+		}
+
+		/**
+		 * set box
+		 * @param box
+		 * @return the geometry
+		 */
+		public Intersectable setBox(Box box) {
+			this.box = box;
+			return this;
+		}
+	
+	//********************* functions*****************//
 
 	/**
 	 * function that finds intersections points
@@ -180,7 +222,7 @@ public interface Intersectable {
 	 * @param r ray
 	 * @return list of all intersections points
 	 */
-	default List<Point3D> findIntersections(Ray ray) {
+	public List<Point3D> findIntersections(Ray ray) {
 		List<GeoPoint> geoList = findGeoIntersections(ray);
 		return geoList == null ? null : geoList.stream().map(gp -> gp.point).collect(Collectors.toList());
 	}
@@ -191,7 +233,6 @@ public interface Intersectable {
 	 * @param r ray
 	 * @return list of all intersections geo points
 	 */
-	public List<GeoPoint> findGeoIntersections(Ray r);
-	public Box getBox();
+	public abstract List<GeoPoint> findGeoIntersections(Ray r);
 
 }

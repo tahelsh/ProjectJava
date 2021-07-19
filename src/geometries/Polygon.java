@@ -125,8 +125,7 @@ public class Polygon extends Geometry {
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
 		if (this.getBox().IntersectionBox(ray) == false)
 			return null;
-//		if (!IsIntersectionBox(ray))
-//			return null;
+
 		List<GeoPoint> intersections = plane.findGeoIntersections(ray);
 		if (intersections == null)
 			return null;
@@ -156,6 +155,4 @@ public class Polygon extends Geometry {
 		}
 		return intersections;
 	}
-	@Override
-	public Point3D getPositionPoint() {return vertices.get(0);}
 }

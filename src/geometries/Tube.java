@@ -77,8 +77,4 @@ public class Tube extends Geometry {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
-	public Point3D getPositionPoint() {
-		return this.axisRay.getP0();
-	}
 }

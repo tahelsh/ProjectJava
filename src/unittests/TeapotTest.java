@@ -560,7 +560,7 @@ public class TeapotTest {
 	 */
 	@Test
 	public void teapot1() {
-		scene.geometries.add( //
+		scene.geometries.add( 
 				new Triangle(pnts[7], pnts[6], pnts[1]).setEmmission(color).setMaterial(mat), //
 				new Triangle(pnts[1], pnts[2], pnts[7]).setEmmission(color).setMaterial(mat), //
 				new Triangle(pnts[8], pnts[7], pnts[2]).setEmmission(color).setMaterial(mat), //

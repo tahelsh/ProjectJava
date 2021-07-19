@@ -13,14 +13,17 @@ import primitives.Ray;
  *
  */
 
-public abstract class Geometry implements Intersectable {
+public abstract class Geometry extends Intersectable {
 	private Color emmission = Color.BLACK;
 	private Material material=new Material();
-	private Box box=null;
 
+	/**
+	 * C-TOR that gets a box
+	 * @param box a box
+	 */
 	public Geometry(Box box)
 	{
-		this.box=box;
+		super(box);
 	}
 	/**
 	 * calculate a vector normal of a geometry
@@ -29,11 +32,6 @@ public abstract class Geometry implements Intersectable {
 	 * @return Vector normal for point
 	 */
 	public abstract Vector getNormal(Point3D p);
-	/**
-	 * Returns point on the geometry - for Bounding Volume Hierarchy
-	 * @return Point3D
-	 */
-	public abstract Point3D getPositionPoint();
 	
 	
 	// ***************** Getters/Setters ********************** //
@@ -90,13 +88,5 @@ public abstract class Geometry implements Intersectable {
 		this.box = box;
 		return this;
 	}
-	
-//	@Override
-//	public boolean IsIntersectionBox(Ray ray)
-//	{
-//		if(this.box==null)
-//			return true;
-//		else
-//			return box.IntersectionBox(ray);			
-//	}
+
 }
